@@ -1,0 +1,438 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import HomeView from '../views/VistaAdministrador.vue'
+import { usarAuthStore } from '../stores/autentificacionStore';
+import { addStyle, removeStyle } from '../utils/stylesManager';
+import { usePaginaStore } from '../stores/paginaStore';
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/office",
+    name: "office_admin",
+    component: HomeView,
+    meta: { requiresAuth: true, style: "" },
+    children: [
+      // {
+      //   path: "home_admin",
+      //   name: "Home_Admin",
+      //   component: () => import("../views/administrador/home_admin.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      {
+        path: "trabajador",
+        name: "ModuloTrabajador",
+        component: () => import("../views/administrador/trabajador_lista.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "registrartrabajador",
+        name: "registrarTrabajador",
+        component: () =>
+          import("../views/administrador/trabajador_registrar.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "editartrabajador/:id",
+        name: "editarTrabajador",
+        component: () => import("../views/administrador/trabajador_editar.vue"),
+        props: true,
+        meta: { requiresAuth: true },
+      },
+      // {
+      //   path: "clientes_lista",
+      //   name: "ClientesLista",
+      //   component: () => import("../views/administrador/cliente_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      {
+        path: "crearnegocio",
+        name: "CrearNegocio",
+        component: () => import("../views/administrador/negocio_crear.vue"),
+        meta: { requiresAuth: true },
+      },
+      // {
+      //   path: "editarnegocio/:id",
+      //   name: "EditarNegocio",
+      //   component: () => import("../views/administrador/negocio_detalles.vue"),
+      //   // props: true,
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "usuarios_lista",
+      //   name: "ListaUsuarios",
+      //   component: () => import("../views/administrador/usuarios_lista.vue"),
+      //   // props: true,
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "vercuponespendientes",
+      //   name: "VerCuponesPendientes",
+      //   component: () =>
+      //     import("../views/administrador/cupones_pendientes.vue"),
+      //   // props: true,
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "vercuponesusados",
+      //   name: "VerCuponesUsados",
+      //   component: () => import("../views/administrador/cupones_usados.vue"),
+      //   // props: true,
+      //   meta: { requiresAuth: true },
+      // },
+      //------------------------------------------------------------------------------------
+      //MODULO NEGOCIO ---------------------------------------------------------------------
+      //------------------------------------------------------------------------------------
+      {
+        path: "minegocio_detalles",
+        name: "MiNegocioDetalles",
+        component: () =>
+          import("../views/administrador/negocio_perfil_detalle.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "minegocio_ofertas",
+        name: "MiNegocioOfertas",
+        component: () =>
+          import("../views/administrador/negocio_perfil_ofertas.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "minegocio_convenios",
+        name: "MiNegocioConvenios",
+        component: () =>
+          import("../views/administrador/negocio_perfil_convenios.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "minegociosedes",
+        name: "MiNegocioSedes",
+        component: () =>
+          import("../views/administrador/negocio_perfil_sedes.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "cuponespendientes",
+        name: "CuponesPendientes",
+        component: () =>
+          import("../views/administrador/negocio_perfil_cuponPendiente.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "cuponescanjeados",
+        name: "CuponesCanjeados",
+        component: () =>
+          import("../views/administrador/negocio_perfil_cuponUsado.vue"),
+        // props: true,
+        meta: { requiresAuth: true },
+      },
+
+      // {
+      //   path: "familiar",
+      //   name: "Familiar",
+      //   component: () => import("../views/administrador/familiar_lista.vue"),
+      //   // props: true,
+      //   meta: { requiresAuth: true },
+      // },
+      {
+        path: "trabajadordetalle/:id",
+        name: "TrabajadorDetalle",
+        component: () =>
+          import("../views/administrador/trabajador_detalle.vue"),
+        props: true,
+        meta: { requiresAuth: true },
+      },
+      //------------------------------------------------------------------------------------
+      //MODULO TRABAJADOR ---------------------------------------------------------------------
+      //------------------------------------------------------------------------------------
+
+      // {
+      //   path: "negocios_lista",
+      //   name: "ListarNegocios",
+      //   component: () => import("../views/administrador/negocio_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "ofertas_lista",
+      //   name: "OfertasListas",
+      //   component: () => import("../views/administrador/ofertas_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "convenios_lista",
+      //   name: "Convenio_Lista",
+      //   component: () => import("../views/administrador/convenio_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "oficina",
+      //   component: () => import("../views/administrador/oficina_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      // {
+      //   path: "categoria",
+      //   component: () => import("../views/administrador/categoria_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
+      {
+        path: "SliderPrincipal",
+        component: () => import("../views/administrador/slider_lista.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "pagina",
+        name: "Pagina",
+        component: () => import("../views/administrador/pagina_lista.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "pagina_crear",
+        name: "Pagina_crear",
+        component: () => import("../views/administrador/pagina_front.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "/editar/:id",
+        name: "Pagina_editar",
+        component: () => import("../views/administrador/pagina_front.vue"),
+      },
+      {
+        path: "PubliLink",
+        component: () => import("../views/administrador/publiLink_List.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "EditarCampos",
+        name: "editarcampos",
+        component: () => import("../views/administrador/pagina_campos.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "Preguntas",
+        name: "preguntas",
+        component: () => import("../views/administrador/preguntas_lista.vue"),
+        meta: { requiresAuth: true },
+      },
+    ],
+  },
+  {
+    path: "/beneficios",
+    name: "ApBeneficios",
+    component: () => import("../views/VistaBeneficios.vue"),
+    meta: { style: "/src/assets/css/landing.css" },
+    beforeEnter: async (to, from, next) => {
+      const paginaStore = usePaginaStore();
+      if (!paginaStore.pagina) {
+        await paginaStore.almacenaPagina();
+      }
+      next();
+    },
+    children: [
+      {
+        path: "/",
+        name: "Inicio",
+        component: () => import("../views/beneficios/inicio.vue"),
+      },
+      {
+        path: "loggin",
+        name: "Loggin",
+        component: () => import("../views/beneficios/loggin.vue"),
+      },
+      {
+        path: "loggin_negocio",
+        name: "Login_negocio",
+        component: () => import("../views/beneficios/loggin_negocio.vue"),
+      },
+      {
+        path: "loggin_admin",
+        name: "Login_admin",
+        component: () => import("../views/beneficios/loggin_admin.vue"),
+      },
+      {
+        path: "generarpassword",
+        name: "GenerarPassword",
+        component: () => import("../views/beneficios/loggin_generarpass.vue"),
+      },
+      {
+        path: "recuperarpassword",
+        name: "RecuperarPassword",
+        component: () =>
+          import("../views/beneficios/loggin_recuperar_pass.vue"),
+      },
+      {
+        path: "ofertas",
+        name: "Ofertas",
+        component: () => import("../views/beneficios/oferta_categorias.vue"),
+      },
+      {
+        path: "negocio",
+        name: "Negocio",
+        component: () => import("../views/beneficios/negocio_lista.vue"),
+      },
+      {
+        path: "negociodetalle/:id",
+        name: "NegocioDetalle",
+        component: () => import("../views/beneficios/negocio_detalle.vue"),
+      },
+      {
+        path: "ofertadetalle/:id",
+        name: "OfertaDetalle",
+        component: () => import("../views/beneficios/oferta_detalle.vue"),
+      },
+
+      {
+        path: "oferta_categoria/:id",
+        name: "OfertaCategoria",
+        component: () => import("../views/beneficios/ofertas_categoriaId.vue"),
+      },
+      {
+        path: "cuenta",
+        name: "Cuenta",
+        component: () => import("../views/beneficios/perfil.vue"),
+        children: [
+          {
+            path: "misdatos",
+            name: "MisDatos",
+            component: () => import("../views/beneficios/perfil_misdatos.vue"),
+          },
+          {
+            path: "misfamiliares",
+            name: "MisFamiliares",
+            component: () =>
+              import("../views/beneficios/perfil_familiares.vue"),
+          },
+          {
+            path: "miscupones",
+            name: "MisCupones",
+            component: () =>
+              import("../views/beneficios/perfil_ofertasActivas.vue"),
+          },
+          {
+            path: "miscuponesusados",
+            name: "MisCuponesUsados",
+            component: () =>
+              import("../views/beneficios/perfil_ofertasUsadas.vue"),
+          },
+        ],
+      },
+      {
+        path: "novedades",
+        name: "Novedades",
+        component: () => import("../views/beneficios/noticia_list.vue"),
+      },
+      {
+        path: "novedades/:id/:titulo?",
+        name: "NovedadesTitulo",
+        component: () => import("../views/beneficios/noticia_view.vue"),
+      },
+      {
+        path: "carrito",
+        name: "Carrito",
+        component: () => import("../views/beneficios/ListaOfertasCupones.vue"),
+      },
+      {
+        path: "politicasyprivacidad",
+        name: "PoliticasyPrivacidad",
+        component: () => import("../views/beneficios/PoliticasyPrivacidad.vue"),
+      },
+      {
+        path: "terminosycondiciones",
+        name: "TerminosyCondiciones",
+        component: () => import("../views/beneficios/TerminosyCondiciones.vue"),
+      },
+      {
+        path: "cumple",
+        name: "Cumple",
+        component: () => import("../views/beneficios/cumpleanos_view.vue"),
+      },
+      {
+        path: "preguntasfrecuentes",
+        name: "PreguntasFrecuentes",
+        component: () => import("../views/beneficios/preguntas_frecuentes.vue"),
+      },
+    ],
+  },
+  // {
+  //   path: "/portal",
+  //   name: "Home",
+  //   component: () => import("../views/VistaPrincipal.vue"),
+  //   meta: { style: "/src/assets/css/landing.css" },
+  //   beforeEnter: async (to, from, next) => {
+  //     const paginaStore = usePaginaStore();
+  //     if (!paginaStore.pagina) {
+  //       await paginaStore.almacenaPagina();
+  //     }
+  //     next();
+  //   },
+  //   children: [
+  //     {
+  //       path: "/",
+  //       name: "Bienvenida",
+  //       component: () => import("../views/home/home.vue"),
+  //     },
+  //     {
+  //       path: "pagosenlinea",
+  //       name: "PagosEnLinea",
+  //       component: () => import("../views/home/enconstruccion.vue"),
+  //     },
+  //     {
+  //       path: "tramites",
+  //       name: "Tramites",
+  //       component: () => import("../views/home/enconstruccion.vue"),
+  //     },
+  //   ],
+  // },
+  {
+    path: "/verificacion/:id",
+    name: "Verificacion",
+    component: () => import("../views/beneficios/verified.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../views/home/pagina_404.vue"), // Aquí importas tu componente de 404
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { left: 0, top: 0 };
+    }
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = usarAuthStore();
+  if (to.matched.some(record => record.meta.requiresAuth) && !authStore.trabajador) {
+    if (!authStore.token_id) {
+      next({ name: 'Loggin' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+router.afterEach((to, from) => {
+  const toParent = to.matched[0]?.meta?.style as string | undefined;
+  const fromParent = from.matched[0]?.meta?.style as string | undefined;
+
+  if (fromParent && fromParent !== toParent) {
+    removeStyle(fromParent);
+  }
+  if (toParent && toParent !== fromParent) {
+    addStyle(toParent);
+  }
+});
+
+export default router;

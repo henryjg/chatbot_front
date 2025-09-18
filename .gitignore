@@ -1,0 +1,64 @@
+node_modules/
+dist/
+src/config.ts
+
+# =====================================================
+# PREVENIR ARCHIVOS AUTOMÁTICOS FUTUROS
+# =====================================================
+
+# Archivos MD generados automáticamente
+**/COPILOT_*.md
+**/SYSTEM_*.md
+**/TOKEN_*.md
+**/AUTH_*.md
+**/MIGRATION_*.md
+**/INTEGRATION_*.md
+**/COMPLETADO*.md
+**/CONTROL_*.md
+**/CORRECCION_*.md
+**/CONSOLIDACION_*.md
+**/ARCHIVOS_*.md
+**/ROLE_*.md
+**/VUE_*.md
+**/EVOLTA_*.md
+**/UPLOAD_*.md
+**/INTEGRACION_*.md
+
+# Scripts PowerShell automáticos
+**/fix-*.ps1
+**/cleanup-*.ps1
+**/auto-*.ps1
+**/temp-*.ps1
+**/generated-*.ps1
+**/copilot-*.ps1
+**/deep-*.ps1
+
+# Archivos de debug y testing
+debug_token.js
+test-*.js
+token-debug.html
+**/debug/
+src/debug/
+
+# Archivos temporales
+**/.vscode/temp-*
+**/.vscode/copilot-reset.json
+**/.copilot/
+**/temp/
+**/.temp/
+*.tmp
+*.bak
+*.orig
+
+# Archivos legacy/deprecated
+*.deprecated.*
+*.migrated.*
+*.old.*
+*_old.*
+*_legacy.*
+
+# Mantener archivos importantes
+!README.md
+!CHANGELOG.md
+!LICENSE.md
+!CONTRIBUTING.md
