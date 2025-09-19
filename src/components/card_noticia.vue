@@ -1,20 +1,20 @@
 <template>
   <router-link :to="linkTo">
     <div class="shadow-none p-2 rounded-0">
-      <imglazy v-if="noticia.url_ImagenDestacada && noticia.url_ImagenDestacada !== ''" class="noticia-imagen rounded-3"
-                            :src="noticia.url_ImagenDestacada" aspectRatio="16 / 7" ></imglazy>
-      <div class="card-body py-2 px-3  text-start rounded-0">
+      <!-- <imglazy v-if="noticia.url_ImagenDestacada && noticia.url_ImagenDestacada !== ''" class="noticia-imagen rounded-3"
+                            :src="noticia.url_ImagenDestacada" aspectRatio="16 / 7" ></imglazy> -->
+      <!-- <div class="card-body py-2 px-3  text-start rounded-0">
         <h6 class="card-title text-blue-800 mt-0">{{ noticia.titulo }}</h6>
         <p class=" text-yellow-800 text-end justify-content-center">
           {{ FormatFecha.fecha_dddd_mmmm_yyyy(noticia.fechaRegistro) }}</p>
-      </div>
+      </div> -->
     </div>
   </router-link>
 </template>
   
   <script lang="ts">
   import { defineComponent, PropType } from 'vue';
-  import { Noticias } from '../interfaces/servicios.interface';
+  // import { Noticias } from '../interfaces/servicios.interface';
   import { FormatFecha } from '../utils/FormatFecha';
   import imglazy from '../components/Elementos/lazyimg.vue';
 
@@ -26,7 +26,7 @@
     name: 'CardMarca',
       props: {
         noticia: {
-          type: Object as PropType<Noticias>,
+          // type: Object as PropType<Noticias>,
           required: true,
         },
         linkTo: {

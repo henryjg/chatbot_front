@@ -9,13 +9,13 @@
           <div class="card-body">
             <div class="row g-0 ">
                <div class="col-md-3 mb-4">
-                <img
+                <!-- <img
                   :src="usuario.rol.includes('Trabajador') && usuario.fotoperfil ? usuario.fotoperfil : '/src/assets/images/avatar.png'"
                   alt="Imagen superior"
                   class="rounded-circle"
                   style="width: 150px; height: 150px; object-fit: cover; margin: auto;"
                   @click="usuario.rol.includes('Trabajador') ? openModal() : null"
-                />
+                /> -->
               </div>
               <router-link to="misdatos" class="col-lg-12 col-3">
                 <div class="btn-link-hover-info btn mb-2 w-100 d-flex flex-wrap">
@@ -70,12 +70,12 @@
         <div class="card d-sm-none d-sm-block m-auto">
           <div class="card-body p-1">
             <div class="row g-0">
-              <div class="col-md-12 mb-4 text-center">
+              <!-- <div class="col-md-12 mb-4 text-center">
                 <div v-if="usuario.fotoperfil" class="circular-div-small" @click="openModal">
                   <img :src="usuario.fotoperfil" alt="Imagen de perfil">
                 </div>
                 <img v-else class="rounded-circle img-fluid img-thumbnail" src="/src/assets/images/avatar.png" @click="openModal">
-              </div>
+              </div> -->
               <router-link to="misdatos" class="col-lg-12 col-3">
                 <div class="btn-link-hover-info btn mb-2 w-100 d-flex flex-wrap justify-content-center">
                   <i class="ph-duotone ph-user-circle m-auto" style="font-size: 27px !important;"></i>
@@ -140,7 +140,7 @@
               tipoArchivo="fotografia"
               :archivoTemporal="archivoTrabajador.ArchivoTemporal.value"
               :resetTrigger="resetTrigger"
-              @archivoSubido="onFileUploaded"
+              @archivoSubido=""
               @uploadingStatus="archivoTrabajador.isUploading.value = $event"
             />
           </div>
@@ -161,7 +161,7 @@ import { defineComponent, computed, ref } from "vue";
 import { Modal } from "bootstrap";
 import { Alerta } from '../../utils/_utils';
 import { usarAutenticacion, useTrabajador, useSubirArchivo } from "../../composables/_composables";
-import { useAuthStore } from "../../stores/authStore";
+// import { useAuthStore } from "../../stores/authStore";
 import FileUploader from "../../components/FileUploader_miniatura.vue";
 import modal_CambiarPass from "../Modals/modal_CambiarPass.vue";
 
@@ -169,10 +169,10 @@ export default defineComponent({
   name: "Perfil",
   components: { FileUploader, modal_CambiarPass },
   setup() {
-    const { Actualizar_Trabajador } = useTrabajador();
+    // const { Actualizar_Trabajador } = useTrabajador();
     const { logout } = usarAutenticacion();
-    const authStore = useAuthStore();
-    const usuario = computed(() => authStore.usuarioLogueado);
+    // // const authStore = useAuthStore();
+    // const usuario = computed(() => authStore.usuarioLogueado);
 
     const archivoTrabajador = useSubirArchivo("loadingfile", "fotografia");
     const resetTrigger = ref(0);
@@ -190,13 +190,13 @@ export default defineComponent({
       }
     };
 
-    const onFileUploaded = (archivo: { url: string }) => {
-      usuario.value.fotoperfil = archivo.url;
-    };
+    // const onFileUploaded = (archivo: { url: string }) => {
+    //   usuario.value.fotoperfil = archivo.url;
+    // };
 
     const savePhoto = async () => {
       try {
-        await Actualizar_Trabajador(usuario.value.id, { fotoPerfil: usuario.value.fotoperfil });
+        // await Actualizar_Trabajador(usuario.value.id, { fotoPerfil: usuario.value.fotoperfil });
         const modalElement = document.getElementById("modal_update_photo");
         if (modalElement) {
           const modal = Modal.getInstance(modalElement);
@@ -229,10 +229,10 @@ export default defineComponent({
     return {
       confirmLogout,
       openModal,
-      usuario,
+      // usuario,
       archivoTrabajador,
       resetTrigger,
-      onFileUploaded,
+      // onFileUploaded,
       savePhoto,
       openChangePasswordModal
     };

@@ -21,36 +21,37 @@
                 >
                 <select class="form-select wid-120 py-2" v-model="categoriaSeleccionada" @change="filtrarPorCategoria">
                   <option value="">Categoría</option>
-                  <option v-for="categoria in listaCategorias" :key="categoria.id" :value="categoria.id">
+                  <!-- <option v-for="categoria in listaCategorias" :key="categoria.id" :value="categoria.id">
                     {{ categoria.nombre }}
-                  </option>
+                  </option> -->
                 </select>
               </div>
             </div>
          
 
-          <Divloading v-if="isloading_ofertas" class="pt-5"/>
-          <div class="row pt-5" v-else>
-            <div 
+          <!-- <Divloading v-if="isloading_ofertas" class="pt-5"/>
+          <div class="row pt-5" v-else> -->
+            <!-- <div 
               class="col-md-3 f-u2e0 text-center" 
               v-for="(oferta, index) in ofertasFiltradas" 
               :key="oferta.id"
-            >              <CardOferta 
+            >            
+              <CardOferta 
                 :item="oferta"
                 :linkTo="`/beneficios/ofertadetalle/${oferta.id}`"
                 subtitulo="Nuevo lanzamiento"
               />
-            </div>
-            <div v-if="ofertasFiltradas.length === 0" class="text-center w-100 mt-3">
+            </div> -->
+            <!-- <div v-if="ofertasFiltradas.length === 0" class="text-center w-100 mt-3">
               <p>No se encontraron ofertas.</p>
-            </div>
+            </div> -->
           </div>
 
 
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 
   <!-- PRECIO ------------------------------------------ -->
   <div class="row bg-gray-200 pt-2 pb-3">
@@ -75,10 +76,10 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from 'vue';
-import { carousel_fotos, carousel_fotos2, carousel, CardOferta, Divloading } from '../../components/_components';
+import { carousel_fotos, carousel_fotos2, carousel, Divloading } from '../../components/_components';
 import { NumberFormat } from '../../utils/_utils';
-import { useOfertas, useCategorias } from '../../composables/_composables';
-import { useAuthStore } from '../../stores/authStore';
+// import { useOfertas, useCategorias } from '../../composables/_composables';
+// import { useAuthStore } from '../../stores/authStore';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { usePaginaStore } from '../../stores/paginaStore';
@@ -104,27 +105,27 @@ interface Oferta {
 
 export default defineComponent({
   components: {
-    carousel_fotos, carousel, CardOferta, carousel_fotos2, Divloading
+    carousel_fotos, carousel, carousel_fotos2, Divloading
   },
   setup() {
     const pagStore = usePaginaStore();
-    const authStore = useAuthStore();
-    const Usuario = computed(() => authStore.usuarioLogueado);
+    // const authStore = useAuthStore();
+    // const Usuario = computed(() => authStore.usuarioLogueado);
 
     const ListaFotos = ref<any[]>([]);    
-    const { listaOfertas, Listar_Ofertas_Activas, Eliminar_Oferta, Listar_Ofertas_porCategoria, isloading_ofertas } = useOfertas();
-    const { listaCategorias, Listar_Categorias } = useCategorias();
+    // const { listaOfertas, Listar_Ofertas_Activas, Eliminar_Oferta, Listar_Ofertas_porCategoria, isloading_ofertas } = useOfertas();
+    // const { listaCategorias, Listar_Categorias } = useCategorias();
     const categoriaSeleccionada = ref('');
 
     const busqueda = ref('');    const filtrarPorCategoria = async () => {
       if (categoriaSeleccionada.value) {
-        await Listar_Ofertas_porCategoria(Number(categoriaSeleccionada.value));
+        // await Listar_Ofertas_porCategoria(Number(categoriaSeleccionada.value));
       } else {
-        await Listar_Ofertas_Activas();
+        // await Listar_Ofertas_Activas();
       }
     };    onMounted(async () => {
-      await Listar_Categorias();
-      await Listar_Ofertas_Activas();
+      // await Listar_Categorias();
+      // await Listar_Ofertas_Activas();
     });
 
     // Función para validar si un descuento es válido (string o porcentaje)
@@ -139,30 +140,30 @@ export default defineComponent({
       return true;
     }
 
-    const ofertasFiltradas = computed(() => {
-      const hoy = new Date();
-      let ofertas = listaOfertas.value.filter(oferta => new Date(oferta.fechaFin) >= hoy);
-      if (Usuario.value && Usuario.value.idrol === 1) {
-        // Cliente: solo mostrar ofertas con descuento cliente válido
-        ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_cliente));
-      } else if (Usuario.value && Usuario.value.idrol === 2) {
-        // Trabajador: solo mostrar ofertas con descuento trabajador válido
-        ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_trabajador));
-      } else {
-        // No logueado: solo mostrar ofertas con descuento cliente válido
-        ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_cliente));
-      }
-      return ofertas;
-    });
+    // const ofertasFiltradas = computed(() => {
+    //   const hoy = new Date();
+    //   let ofertas = listaOfertas.value.filter(oferta => new Date(oferta.fechaFin) >= hoy);
+    //   if (Usuario.value && Usuario.value.idrol === 1) {
+    //     // Cliente: solo mostrar ofertas con descuento cliente válido
+    //     ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_cliente));
+    //   } else if (Usuario.value && Usuario.value.idrol === 2) {
+    //     // Trabajador: solo mostrar ofertas con descuento trabajador válido
+    //     ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_trabajador));
+    //   } else {
+    //     // No logueado: solo mostrar ofertas con descuento cliente válido
+    //     ofertas = ofertas.filter(oferta => descuentoValido(oferta?.valordscto_cliente));
+    //   }
+    //   return ofertas;
+    // });
    return {
       NumberFormat,
-      listaOfertas,
+      // listaOfertas,
       busqueda,
-      ofertasFiltradas,
-      listaCategorias,
+      // ofertasFiltradas,
+      // listaCategorias,
       categoriaSeleccionada,
       filtrarPorCategoria,
-      isloading_ofertas
+      // isloading_ofertas
     };
   },
   mounted() {

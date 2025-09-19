@@ -56,9 +56,9 @@
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 align-items-start">
-            <li v-if="isLoggedIn" class="nav-item align-content-center m-auto text-primary">
+            <!-- <li v-if="isLoggedIn" class="nav-item align-content-center m-auto text-primary">
               Bienvenido, {{Usuario.nombreusuario}}
-            </li>
+            </li> -->
             
             <li class="nav-item">
               <a href="#" class="btn p-2 mx-2 " @click="toggleTheme">
@@ -66,7 +66,7 @@
                 <i v-else class="ph-duotone ph-moon text-info "></i>
               </a>
             </li>
-            <li class="nav-item" v-if="!isLoggedIn">
+            <!-- <li class="nav-item" v-if="!isLoggedIn">
               <router-link  to="/beneficios/loggin" class="nav-link f-18 ">
                 <i class="ph-duotone ph-user"></i>
               </router-link>
@@ -82,7 +82,7 @@
                 to="/office" class="nav-link f-18 ">
                 <i class="ph-duotone ph-user"></i>
               </router-link>
-            </li>
+            </li> -->
 
             
           </ul>
@@ -97,7 +97,7 @@
       <i v-if="!isModeDark" class="ph-duotone ph-sun-dim text-warning "></i>
       <i v-else class="ph-duotone ph-moon text-info "></i>
     </a>
-    <div class="nav-item" v-if="!isLoggedIn">
+    <!-- <div class="nav-item" v-if="!isLoggedIn">
         <router-link  to="/beneficios/loggin" class="nav-link f-18 ">
           <i class="ph-duotone ph-user"></i>
         </router-link>
@@ -113,16 +113,16 @@
         to="/office" class="nav-link f-18 ">
         <i class="ph-duotone ph-user"></i>
       </router-link>
-    </div>
+    </div> -->
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     
   </div>
   <div class="offcanvas-body customer-body">
     <!-- ------------------- -->
     <ul class="navbar-nav text-white me-auto p-l-20 mb-2 mb-lg-0 align-items-start ">
-      <li v-if="isLoggedIn" class="nav-item mb-4 text-white">
+      <!-- <li v-if="isLoggedIn" class="nav-item mb-4 text-white">
         Bienvenido, {{Usuario.nombreusuario}}
-      </li>
+      </li> -->
       <li class="nav-item">
         <router-link to="/" class="nav-link f-16 d-flex">
           <div data-bs-dismiss="offcanvas">
@@ -169,7 +169,7 @@
 <script lang="ts">
   import { ref, onMounted, computed } from 'vue';
   import { usarCarritoStore } from '../stores/OfertaCarrito';
-  import { useAuthStore } from '../stores/authStore'; 
+  // import { useAuthStore } from '../stores/authStore'; 
   import { UsuarioLogueado } from '../interfaces/usuario.interface';
   import Alerta from '../utils/alertas';
   import { usarAutenticacion } from '../composables/AuthValidate';
@@ -179,10 +179,10 @@
     setup() {
       const isModeDark = ref(false);
       const carritoStore = usarCarritoStore();
-      const authStore = useAuthStore(); 
-      const Usuario = computed(() => authStore.usuarioLogueado);
+      // const authStore = useAuthStore(); 
+      // const Usuario = computed(() => authStore.usuarioLogueado);
       const { logout } = usarAutenticacion();
-      const isLoggedIn = computed(() => authStore.isLoggedIn);
+      // const isLoggedIn = computed(() => authStore.isLoggedIn);
 
       onMounted(() => {
         document.body.classList.add('landing-page');
@@ -257,8 +257,10 @@
 
 
       return {
-        toggleTheme, isModeDark, showDropdown, toggleDropdown, carritoStore, Usuario,authStore,confirmLogout,
-        isLoggedIn
+        toggleTheme, isModeDark, showDropdown, toggleDropdown, carritoStore, 
+        // Usuario,authStore,
+        confirmLogout,
+        // isLoggedIn
       };
     }
   };

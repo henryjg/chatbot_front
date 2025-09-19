@@ -80,7 +80,7 @@
               <label class="form-label">Oficina</label>
               <select v-model="nuevoTrabajador.oficinaId" class="form-select">
                 <option>Elegir</option>
-                <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option>
+                <!-- <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option> -->
               </select>
               <ErrorMessage :error="errors.oficinaId" />
             </div>
@@ -154,7 +154,7 @@
                 />
             <ErrorMessage :error="errors.fotoPerfil" />
           </div>
-          <button :disable="isUploading" @click="guardarTrabajador" class="btn btn-primary mb-0">Guardar Trabajador</button>
+          <button :disable="isUploading" @click="" class="btn btn-primary mb-0">Guardar Trabajador</button>
           <button @click="cancelar" class="btn btn-danger mx-2 mb-0">Cancelar</button>
 
         </div>
@@ -170,7 +170,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { Breadcrumb, ErrorMessage } from '../../components/_components';
 import FileUploader from '../../components/FileUploader_miniatura.vue';
 import { cargo, Alerta } from '../../utils/_utils';
-import { useTrabajador, Sunat, useOficina, useSubirArchivo } from '../../composables/_composables';
+import { useTrabajador, Sunat, useSubirArchivo } from '../../composables/_composables';
 import { Adjunto } from '../../interfaces/_interface';
 import NProgress from 'nprogress'; // Importa nprogress
 import 'nprogress/nprogress.css'; // Importa el estilo de nprogress
@@ -192,15 +192,15 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
     const isUploading = ref(false); // Deshabilitar el botón
-    const { nuevoTrabajador, errors, Crear_Trabajador, isLoading_Trabajador } = useTrabajador();
-    const { listaOficinas, cargarOficinas } = useOficina();
+    const { nuevoTrabajador, errors,  isLoading_Trabajador } = useTrabajador();
+    // const { listaOficinas, cargarOficinas } = useOficina();
 
     // Manejo de archivos (fotografía de perfil)
     const archivoTrabajador = useSubirArchivo("loadingfile", "fotografia");
     
     const { Validar_DNI, PersonaData } = Sunat();
       onMounted(async () => {
-      cargarOficinas();
+      // cargarOficinas();
     });
 
         // API RENIEC
@@ -237,36 +237,36 @@ export default defineComponent({
       }
     };
 
-    const guardarTrabajador = async () => {
-      try {
-        isUploading.value = true;
-        NProgress.start();
+    // const guardarTrabajador = async () => {
+    //   try {
+    //     isUploading.value = true;
+    //     NProgress.start();
 
-        const dataToSend = {
-          ...nuevoTrabajador.value,
-          fechaNacimiento: nuevoTrabajador.value.fechaNacimiento
-            ? new Date(nuevoTrabajador.value.fechaNacimiento).toISOString()
-            : '',
-          fechaIngreso: nuevoTrabajador.value.fechaIngreso
-            ? new Date(nuevoTrabajador.value.fechaIngreso).toISOString()
-            : ''
-        };
-        // Primero crear el trabajador
-        const resultado = await Crear_Trabajador(dataToSend);
-        if (resultado && resultado.success) {
-          Alerta.Sucessfull('Éxito', 'Trabajador registrado correctamente');
-          router.push('/office/trabajador');
-        } else {
-          Alerta.Advertencia('Advertencia', resultado?.message || 'No se pudo guardar el trabajador.');
-        }
-      } catch (error: any) {
-        console.error('Error al guardar trabajador:', error);
-        Alerta.Advertencia('Advertencia', error?.message || 'No se pudo guardar el trabajador.');
-      } finally {
-        isUploading.value = false;
-        NProgress.done();
-      }
-    };
+    //     const dataToSend = {
+    //       ...nuevoTrabajador.value,
+    //       fechaNacimiento: nuevoTrabajador.value.fechaNacimiento
+    //         ? new Date(nuevoTrabajador.value.fechaNacimiento).toISOString()
+    //         : '',
+    //       fechaIngreso: nuevoTrabajador.value.fechaIngreso
+    //         ? new Date(nuevoTrabajador.value.fechaIngreso).toISOString()
+    //         : ''
+    //     };
+    //     // Primero crear el trabajador
+    //     const resultado = await Crear_Trabajador(dataToSend);
+    //     if (resultado && resultado.success) {
+    //       Alerta.Sucessfull('Éxito', 'Trabajador registrado correctamente');
+    //       router.push('/office/trabajador');
+    //     } else {
+    //       Alerta.Advertencia('Advertencia', resultado?.message || 'No se pudo guardar el trabajador.');
+    //     }
+    //   } catch (error: any) {
+    //     console.error('Error al guardar trabajador:', error);
+    //     Alerta.Advertencia('Advertencia', error?.message || 'No se pudo guardar el trabajador.');
+    //   } finally {
+    //     isUploading.value = false;
+    //     NProgress.done();
+    //   }
+    // };
 
     // Reset trigger para fileuploader
     const resetTrigger = ref(0);
@@ -287,9 +287,9 @@ export default defineComponent({
 
     return {
       isUploading,
-      listaOficinas,
+      // listaOficinas,
       nuevoTrabajador,
-      Crear_Trabajador,
+      // Crear_Trabajador,
       cancelar,
       onDniChange,
       onDniInput,
@@ -298,7 +298,7 @@ export default defineComponent({
       // registrar_FotoPerfil,
       errors,
       cargo,
-      guardarTrabajador,
+      // guardarTrabajador,
       resetTrigger,
       archivoTrabajador
     };

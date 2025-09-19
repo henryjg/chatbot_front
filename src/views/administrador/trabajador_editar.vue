@@ -71,7 +71,7 @@
               <label class="form-label">Oficina</label>
               <select v-model="trabajador.oficinaId" class="form-select">
                 <option disabled>Elegir</option>
-                <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option>
+                <!-- <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option> -->
               </select>
               <ErrorMessage :error="errors.oficinaId" />
             </div>
@@ -124,7 +124,7 @@
                 />
             <ErrorMessage :error="errors.fotoPerfil" />
           </div>
-          <button :disabled="isUploading" @click="guardarCambios" class="btn btn-primary mb-0">Guardar Cambios</button>
+          <button :disabled="isUploading" @click="" class="btn btn-primary mb-0">Guardar Cambios</button>
           <button @click="cancelar" class="btn btn-danger mx-2 mb-0">Cancelar</button>
         </div>
       </div>
@@ -139,7 +139,7 @@ import { useRoute, useRouter } from 'vue-router';
 // Centralized imports
 import { Breadcrumb, ErrorMessage } from '../../components/_components';
 import FileUploader from '../../components/FileUploader_miniatura.vue';
-import { useTrabajador, useOficina, Sunat, useSubirArchivo } from '../../composables/_composables';
+import { useTrabajador, Sunat, useSubirArchivo } from '../../composables/_composables';
 import { Notif, cargo } from '../../utils/_utils';
 import { Adjunto } from '../../interfaces/_interface';
 
@@ -158,8 +158,8 @@ export default defineComponent({
     const isUploading = ref(false);
     const file_img = ref<File | null>(null);
 
-    const { trabajador, Obtener_Trabajador_edit, Actualizar_Trabajador, actualizarFotoTrabajador, registrar_FotoPerfil, errors, isLoading_Trabajador } = useTrabajador();
-    const { listaOficinas, cargarOficinas } = useOficina();
+    const { trabajador, Obtener_Trabajador_edit, errors, isLoading_Trabajador } = useTrabajador();
+    // const { listaOficinas, cargarOficinas } = useOficina();
 
     const { Validar_DNI, personaData } = Sunat();
     const idTrabajador = Number(route.params.id);
@@ -192,30 +192,30 @@ export default defineComponent({
 
     onMounted(async () => {
       await Obtener_Trabajador_edit(idTrabajador);
-      cargarOficinas();
+      // cargarOficinas();
       // Formatea fechas para el input
       fechaNacimiento.value = formatDateForInput(trabajador.value.fechaNacimiento);
       fechaIngreso.value = formatDateForInput(trabajador.value.fechaIngreso);
     });
 
     // Actualiza el trabajador con fechas en formato ISO
-    const guardarCambios = async () => {
-      isUploading.value = true;
-      try {
-        // Prepara el payload solo con los campos requeridos
-        const dataToSend = {
-          ...trabajador.value,
-          fechaNacimiento: toIsoDate(fechaNacimiento.value),
-          fechaIngreso: toIsoDate(fechaIngreso.value),
-        };
-        await Actualizar_Trabajador(idTrabajador, dataToSend);
-        router.push('/office/trabajador');
-      } catch (error) {
-        // Manejo de error
-      } finally {
-        isUploading.value = false;
-      }
-    };
+    // const guardarCambios = async () => {
+    //   isUploading.value = true;
+    //   try {
+    //     // Prepara el payload solo con los campos requeridos
+    //     const dataToSend = {
+    //       ...trabajador.value,
+    //       fechaNacimiento: toIsoDate(fechaNacimiento.value),
+    //       fechaIngreso: toIsoDate(fechaIngreso.value),
+    //     };
+    //     await Actualizar_Trabajador(idTrabajador, dataToSend);
+    //     router.push('/office/trabajador');
+    //   } catch (error) {
+    //     // Manejo de error
+    //   } finally {
+    //     isUploading.value = false;
+    //   }
+    // };
 
  // ----------------------------------------------------------
 
@@ -238,11 +238,11 @@ export default defineComponent({
     const resetTrigger = ref(0);
 
     return { 
-      actualizarFotoTrabajador,
-      listaOficinas, 
+      // actualizarFotoTrabajador,
+      // listaOficinas, 
       trabajador,
       errors, 
-      Actualizar_Trabajador, 
+      // Actualizar_Trabajador, 
       cancelar, 
       breadcrumbRoutes, 
       isUploading, 
@@ -251,7 +251,7 @@ export default defineComponent({
       idTrabajador,
       fechaNacimiento,
       fechaIngreso,
-      guardarCambios,
+      // guardarCambios,
       resetTrigger,
       archivoTrabajador
     };

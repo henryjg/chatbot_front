@@ -9,7 +9,7 @@
           <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-1">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="">
             <div class="row g-1">
               <div class="col-md-12">
                 <label class="form-label">Nombre Categoría:</label>
@@ -32,7 +32,7 @@
           </form>
         </div>
         <div class="modal-footer py-0">
-          <button type="submit" class="btn btn-primary" @click="handleSubmit">
+          <button type="submit" class="btn btn-primary" @click="">
             Actualizar
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -66,16 +66,16 @@ watch(() => props.categoria_Id, async (newId) => {
   }
 });
 
-const handleSubmit = async () => {
-  if (!props.categoria_Id) {
-    return;
-  }
-  const success = await Actualizar_CategoriasNoticias(props.categoria_Id, { ...categoriaNoti.value });
-  if (success) {
-    emit("updated");
-    closeModal();
-  }
-};
+// const handleSubmit = async () => {
+//   if (!props.categoria_Id) {
+//     return;
+//   }
+//   const success = await Actualizar_CategoriasNoticias(props.categoria_Id, { ...categoriaNoti.value });
+//   if (success) {
+//     emit("updated");
+//     closeModal();
+//   }
+// };
 
 const closeModal = () => {
   const modalElement = document.getElementById("editCategoriaNoticiaModal");

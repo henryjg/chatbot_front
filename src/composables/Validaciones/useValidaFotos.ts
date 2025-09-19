@@ -65,9 +65,9 @@ export function useValidaFotos() {
   /**
    * Valida ID de negocio para cargar fotos
    */
-  const validarNegocioId = (negocioId: number): boolean => {
-    return validarCampo('negocioId', negocioId);
-  };
+  // const validarNegocioId = (negocioId: number): boolean => {
+  //   return validarCampo('negocioId', negocioId);
+  // };
 
   return {
     errors,
@@ -75,6 +75,6 @@ export function useValidaFotos() {
     validarCampo,
     validarArchivo,
     validarEliminacion,
-    validarNegocioId
+    // validarNegocioId
   };
 }

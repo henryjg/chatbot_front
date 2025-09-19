@@ -67,7 +67,7 @@ export default {
     ModalPassword
   },
   setup() {
-    const { login, login_solodocumento } = usarAutenticacion();
+    const { login } = usarAutenticacion();
     const usuario = ref('');
     const contrasena = ref('');
     // const tipoUsuario = ref('Cliente');

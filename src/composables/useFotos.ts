@@ -20,117 +20,117 @@ export function useFotos() {
   const isloading_foto = ref(false);
   
   // Importar validaciones y operaciones
-  const { validarEliminacion, validarNegocioId } = useValidaFotos();
+  const { validarEliminacion } = useValidaFotos();
   const { ejecutar } = useOperacion();
 
   /**
    * Carga las fotos de un negocio específico
    */
-  const cargarFotosNegocio = async (negocioId: number) => {
-    if (!validarNegocioId(negocioId)) return;
+  // const cargarFotosNegocio = async (negocioId: number) => {
+  //   if (!validarNegocioId(negocioId)) return;
 
-    return ejecutar(
-      () => FotoService.listarPorNegocio(negocioId),
-      {
-        indicadorCarga: isloading_foto,
-        onExito: (response: any) => {
-          fotos.value = response.success ? response.data : [];
-        },
-        onFinalizacion: () => {
-          if (!fotos.value.length) {
-            fotos.value = [];
-          }
-        }
-      }
-    );
-  };
+  //   return ejecutar(
+  //     () => FotoService.listarPorNegocio(negocioId),
+  //     {
+  //       indicadorCarga: isloading_foto,
+  //       onExito: (response: any) => {
+  //         fotos.value = response.success ? response.data : [];
+  //       },
+  //       onFinalizacion: () => {
+  //         if (!fotos.value.length) {
+  //           fotos.value = [];
+  //         }
+  //       }
+  //     }
+  //   );
+  // };
   /**
    * Carga las fotos de un negocio específico
    */
-  const cargarFotosOferta = async (ofertaId: number) => {
-    if (!validarNegocioId(ofertaId)) return;
+  // const cargarFotosOferta = async (ofertaId: number) => {
+  //   if (!validarNegocioId(ofertaId)) return;
 
-    return ejecutar(
-      () => FotoService.listarPorOferta(ofertaId),
-      {
-        indicadorCarga: isloading_foto,
-        onExito: (response: any) => {
-          fotos.value = response.success ? response.data : [];
-        },
-        onFinalizacion: () => {
-          if (!fotos.value.length) {
-            fotos.value = [];
-          }
-        }
-      }
-    );
-  };
+  //   return ejecutar(
+  //     () => FotoService.listarPorOferta(ofertaId),
+  //     {
+  //       indicadorCarga: isloading_foto,
+  //       onExito: (response: any) => {
+  //         fotos.value = response.success ? response.data : [];
+  //       },
+  //       onFinalizacion: () => {
+  //         if (!fotos.value.length) {
+  //           fotos.value = [];
+  //         }
+  //       }
+  //     }
+  //   );
+  // };
 
   /**
    * Elimina una foto por ID
    */
-  const eliminarFoto = async (id: number) => {
-    if (!validarEliminacion(id)) return;
+  // const eliminarFoto = async (id: number) => {
+  //   if (!validarEliminacion(id)) return;
 
-    // La confirmación se realiza en el componente, aquí solo se ejecuta la eliminación
-    return ejecutar(
-      () => FotoService.EliminarFoto(id),
-      {
-        indicadorCarga: isloading_foto,
-        onExito: (response: any) => {
-          if (response.success) {
-            listaFotos.value = listaFotos.value.filter((item: Foto) => item.id !== id);
-          }
-        },
-        mensajeExito: 'Foto eliminada con éxito'
-      }
-    );
-  };
+  //   // La confirmación se realiza en el componente, aquí solo se ejecuta la eliminación
+  //   return ejecutar(
+  //     () => FotoService.EliminarFoto(id),
+  //     {
+  //       indicadorCarga: isloading_foto,
+  //       onExito: (response: any) => {
+  //         if (response.success) {
+  //           listaFotos.value = listaFotos.value.filter((item: Foto) => item.id !== id);
+  //         }
+  //       },
+  //       mensajeExito: 'Foto eliminada con éxito'
+  //     }
+  //   );
+  // };
 
   /**
    * Registra una nueva foto
    */
-  const registrarFotoNegocio = async (url_subida:string, idnegocio:number) => {
+  // const registrarFotoNegocio = async (url_subida:string, idnegocio:number) => {
  
-    const resultado = await ejecutar(
-      () => FotoService.AgregarFotoNegocio(idnegocio,url_subida),
-      {
-        indicadorCarga: isloading_foto,
-        onExito: async (response: any) => {
-          if (response.success) {
-            await cargarFotosNegocio(idnegocio);
-            // resetFileInput();
-          } else {
-            throw new Error(response.message || 'Error al registrar la foto');
-          }
-        },
-        mensajeExito: 'Foto registrada con éxito'
-      }
-    );
+  //   const resultado = await ejecutar(
+  //     () => FotoService.AgregarFotoNegocio(idnegocio,url_subida),
+  //     {
+  //       indicadorCarga: isloading_foto,
+  //       onExito: async (response: any) => {
+  //         if (response.success) {
+  //           await cargarFotosNegocio(idnegocio);
+  //           // resetFileInput();
+  //         } else {
+  //           throw new Error(response.message || 'Error al registrar la foto');
+  //         }
+  //       },
+  //       mensajeExito: 'Foto registrada con éxito'
+  //     }
+  //   );
 
-    return !!resultado;
-  };
+  //   return !!resultado;
+  // };
 
-  const registrarFotoOferta = async (url_subida:string, idoferta:number) => {
+  // const registrarFotoOferta = async (url_subida:string, idoferta:number) => {
  
-    const resultado = await ejecutar(
-      () => FotoService.AgregarFotoOferta(idoferta,url_subida),
-      {
-        indicadorCarga: isloading_foto,
-        onExito: async (response: any) => {
-          if (response.success) {
-            await cargarFotosNegocio(idoferta);
-            // resetFileInput();
-          } else {
-            throw new Error(response.message || 'Error al registrar la foto');
-          }
-        },
-        mensajeExito: 'Foto registrada con éxito'
-      }
-    );
+  //   const resultado = await ejecutar(
+  //     () => FotoService.AgregarFotoOferta(idoferta,url_subida),
+  //     {
+  //       indicadorCarga: isloading_foto,
+  //       onExito: async (response: any) => {
+  //         if (response.success) {
+  //           await cargarFotosNegocio(idoferta);
+  //           // resetFileInput();
+  //         } else {
+  //           throw new Error(response.message || 'Error al registrar la foto');
+  //         }
+  //       },
+  //       mensajeExito: 'Foto registrada con éxito'
+  //     }
+  //   );
 
-    return !!resultado;
-  };
+  //   return !!resultado;
+  // };
 
   // const resetFileInput = () => {
   //   if (fileInput.value) {  
@@ -159,11 +159,11 @@ export function useFotos() {
     isloading_foto,
     
     // Funciones individuales (retrocompatibilidad)
-    cargarFotosNegocio,
-    cargarFotosOferta,
-    eliminarFoto,
-    registrarFotoNegocio,
-    registrarFotoOferta,
+    // cargarFotosNegocio,
+    // cargarFotosOferta,
+    // eliminarFoto,
+    // registrarFotoNegocio,
+    // registrarFotoOferta,
 
   };
 }

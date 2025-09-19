@@ -44,12 +44,12 @@ const routes: Array<RouteRecordRaw> = [
       //   component: () => import("../views/administrador/cliente_lista.vue"),
       //   meta: { requiresAuth: true },
       // },
-      {
-        path: "crearnegocio",
-        name: "CrearNegocio",
-        component: () => import("../views/administrador/negocio_crear.vue"),
-        meta: { requiresAuth: true },
-      },
+      // {
+      //   path: "crearnegocio",
+      //   name: "CrearNegocio",
+      //   component: () => import("../views/administrador/negocio_crear.vue"),
+      //   meta: { requiresAuth: true },
+      // },
       // {
       //   path: "editarnegocio/:id",
       //   name: "EditarNegocio",
@@ -79,58 +79,7 @@ const routes: Array<RouteRecordRaw> = [
       //   // props: true,
       //   meta: { requiresAuth: true },
       // },
-      //------------------------------------------------------------------------------------
-      //MODULO NEGOCIO ---------------------------------------------------------------------
-      //------------------------------------------------------------------------------------
-      {
-        path: "minegocio_detalles",
-        name: "MiNegocioDetalles",
-        component: () =>
-          import("../views/administrador/negocio_perfil_detalle.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "minegocio_ofertas",
-        name: "MiNegocioOfertas",
-        component: () =>
-          import("../views/administrador/negocio_perfil_ofertas.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "minegocio_convenios",
-        name: "MiNegocioConvenios",
-        component: () =>
-          import("../views/administrador/negocio_perfil_convenios.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "minegociosedes",
-        name: "MiNegocioSedes",
-        component: () =>
-          import("../views/administrador/negocio_perfil_sedes.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "cuponespendientes",
-        name: "CuponesPendientes",
-        component: () =>
-          import("../views/administrador/negocio_perfil_cuponPendiente.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "cuponescanjeados",
-        name: "CuponesCanjeados",
-        component: () =>
-          import("../views/administrador/negocio_perfil_cuponUsado.vue"),
-        // props: true,
-        meta: { requiresAuth: true },
-      },
-
+      
       // {
       //   path: "familiar",
       //   name: "Familiar",
@@ -211,12 +160,12 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("../views/administrador/pagina_campos.vue"),
         meta: { requiresAuth: true },
       },
-      {
-        path: "Preguntas",
-        name: "preguntas",
-        component: () => import("../views/administrador/preguntas_lista.vue"),
-        meta: { requiresAuth: true },
-      },
+      // {
+      //   path: "Preguntas",
+      //   name: "preguntas",
+      //   component: () => import("../views/administrador/preguntas_lista.vue"),
+      //   meta: { requiresAuth: true },
+      // },
     ],
   },
   {
@@ -242,21 +191,21 @@ const routes: Array<RouteRecordRaw> = [
         name: "Loggin",
         component: () => import("../views/beneficios/loggin.vue"),
       },
-      {
-        path: "loggin_negocio",
-        name: "Login_negocio",
-        component: () => import("../views/beneficios/loggin_negocio.vue"),
-      },
+      // {
+      //   path: "loggin_negocio",
+      //   name: "Login_negocio",
+      //   component: () => import("../views/beneficios/loggin_negocio.vue"),
+      // },
       {
         path: "loggin_admin",
         name: "Login_admin",
         component: () => import("../views/beneficios/loggin_admin.vue"),
       },
-      {
-        path: "generarpassword",
-        name: "GenerarPassword",
-        component: () => import("../views/beneficios/loggin_generarpass.vue"),
-      },
+      // {
+      //   path: "generarpassword",
+      //   name: "GenerarPassword",
+      //   component: () => import("../views/beneficios/loggin_generarpass.vue"),
+      // },
       {
         path: "recuperarpassword",
         name: "RecuperarPassword",
@@ -268,27 +217,27 @@ const routes: Array<RouteRecordRaw> = [
         name: "Ofertas",
         component: () => import("../views/beneficios/oferta_categorias.vue"),
       },
-      {
-        path: "negocio",
-        name: "Negocio",
-        component: () => import("../views/beneficios/negocio_lista.vue"),
-      },
-      {
-        path: "negociodetalle/:id",
-        name: "NegocioDetalle",
-        component: () => import("../views/beneficios/negocio_detalle.vue"),
-      },
-      {
-        path: "ofertadetalle/:id",
-        name: "OfertaDetalle",
-        component: () => import("../views/beneficios/oferta_detalle.vue"),
-      },
+      // {
+      //   path: "negocio",
+      //   name: "Negocio",
+      //   component: () => import("../views/beneficios/negocio_lista.vue"),
+      // },
+      // {
+      //   path: "negociodetalle/:id",
+      //   name: "NegocioDetalle",
+      //   component: () => import("../views/beneficios/negocio_detalle.vue"),
+      // },
+      // {
+      //   path: "ofertadetalle/:id",
+      //   name: "OfertaDetalle",
+      //   component: () => import("../views/beneficios/oferta_detalle.vue"),
+      // },
 
-      {
-        path: "oferta_categoria/:id",
-        name: "OfertaCategoria",
-        component: () => import("../views/beneficios/ofertas_categoriaId.vue"),
-      },
+      // {
+      //   path: "oferta_categoria/:id",
+      //   name: "OfertaCategoria",
+      //   component: () => import("../views/beneficios/ofertas_categoriaId.vue"),
+      // },
       {
         path: "cuenta",
         name: "Cuenta",
@@ -299,24 +248,24 @@ const routes: Array<RouteRecordRaw> = [
             name: "MisDatos",
             component: () => import("../views/beneficios/perfil_misdatos.vue"),
           },
-          {
-            path: "misfamiliares",
-            name: "MisFamiliares",
-            component: () =>
-              import("../views/beneficios/perfil_familiares.vue"),
-          },
-          {
-            path: "miscupones",
-            name: "MisCupones",
-            component: () =>
-              import("../views/beneficios/perfil_ofertasActivas.vue"),
-          },
-          {
-            path: "miscuponesusados",
-            name: "MisCuponesUsados",
-            component: () =>
-              import("../views/beneficios/perfil_ofertasUsadas.vue"),
-          },
+          // {
+          //   path: "misfamiliares",
+          //   name: "MisFamiliares",
+          //   component: () =>
+          //     import("../views/beneficios/perfil_familiares.vue"),
+          // },
+          // {
+          //   path: "miscupones",
+          //   name: "MisCupones",
+          //   component: () =>
+          //     import("../views/beneficios/perfil_ofertasActivas.vue"),
+          // },
+          // {
+          //   path: "miscuponesusados",
+          //   name: "MisCuponesUsados",
+          //   component: () =>
+          //     import("../views/beneficios/perfil_ofertasUsadas.vue"),
+          // },
         ],
       },
       {
@@ -329,11 +278,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "NovedadesTitulo",
         component: () => import("../views/beneficios/noticia_view.vue"),
       },
-      {
-        path: "carrito",
-        name: "Carrito",
-        component: () => import("../views/beneficios/ListaOfertasCupones.vue"),
-      },
+      // {
+      //   path: "carrito",
+      //   name: "Carrito",
+      //   component: () => import("../views/beneficios/ListaOfertasCupones.vue"),
+      // },
       {
         path: "politicasyprivacidad",
         name: "PoliticasyPrivacidad",
@@ -349,11 +298,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "Cumple",
         component: () => import("../views/beneficios/cumpleanos_view.vue"),
       },
-      {
-        path: "preguntasfrecuentes",
-        name: "PreguntasFrecuentes",
-        component: () => import("../views/beneficios/preguntas_frecuentes.vue"),
-      },
+      // {
+      //   path: "preguntasfrecuentes",
+      //   name: "PreguntasFrecuentes",
+      //   component: () => import("../views/beneficios/preguntas_frecuentes.vue"),
+      // },
     ],
   },
   // {
@@ -386,11 +335,11 @@ const routes: Array<RouteRecordRaw> = [
   //     },
   //   ],
   // },
-  {
-    path: "/verificacion/:id",
-    name: "Verificacion",
-    component: () => import("../views/beneficios/verified.vue"),
-  },
+  // {
+  //   path: "/verificacion/:id",
+  //   name: "Verificacion",
+  //   component: () => import("../views/beneficios/verified.vue"),
+  // },
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",

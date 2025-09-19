@@ -21,44 +21,44 @@
             <div class="row mb-2">
               <div class="col-md-4">
                 <label class="form-label">DNI</label>
-                <input type="text" v-model="familiar.dni" class="form-control" placeholder="Ingresa el DNI">
+                <!-- <input type="text" v-model="familiar.dni" class="form-control" placeholder="Ingresa el DNI"> -->
                 <!-- <ErrorMessage :error="errors.dni" /> -->
               </div>
               <div class="col-md-4">
                 <label class="form-label">Nombre</label>
-                <input type="text" v-model="familiar.nombre" class="form-control" placeholder="Ingresa el nombre">
+                <!-- <input type="text" v-model="familiar.nombre" class="form-control" placeholder="Ingresa el nombre"> -->
                 <!-- <ErrorMessage :error="errors.nombre" /> -->
               </div>
               <div class="col-md-4">
                 <label class="form-label">Apellido Paterno</label>
-                <input type="text" v-model="familiar.apePaterno" class="form-control" placeholder="Ingresa el apellido paterno">
+                <!-- <input type="text" v-model="familiar.apePaterno" class="form-control" placeholder="Ingresa el apellido paterno"> -->
                 <!-- <ErrorMessage :error="errors.apePaterno" /> -->
               </div>
             </div>
             <div class="row mb-2">
               <div class="col-md-4">
                 <label class="form-label">Apellido Materno</label>
-                <input type="text" v-model="familiar.apeMaterno" class="form-control" placeholder="Ingresa el apellido materno">
+                <!-- <input type="text" v-model="familiar.apeMaterno" class="form-control" placeholder="Ingresa el apellido materno"> -->
                 <!-- <ErrorMessage :error="errors.apeMaterno" /> -->
               </div>
               <div class="col-md-4">
                 <label class="form-label">Correo</label>
-                <input type="email" v-model="familiar.correo" class="form-control" placeholder="Ingresa el correo">
+                <!-- <input type="email" v-model="familiar.correo" class="form-control" placeholder="Ingresa el correo"> -->
                 <!-- <ErrorMessage :error="errors.correo" /> -->
               </div>
               <div class="col-md-4">
                 <label class="form-label">Teléfono</label>
-                <input type="text" v-model="familiar.telefono" class="form-control" placeholder="Ingresa el teléfono">
+                <!-- <input type="text" v-model="familiar.telefono" class="form-control" placeholder="Ingresa el teléfono"> -->
                 <!-- <ErrorMessage :error="errors.telefono" /> -->
               </div>
             </div>
             <div class="row mb-2">
               <div class="col-md-4">
                 <label class="form-label">Género</label>
-                <select v-model="familiar.genero" class="form-select">
+                <!-- <select v-model="familiar.genero" class="form-select">
                   <option value="Masculino">Masculino</option>
                   <option value="Femenino">Femenino</option>
-                </select>
+                </select> -->
                 <!-- <ErrorMessage :error="errors.genero" /> -->
               </div>
             </div>
@@ -75,14 +75,14 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Breadcrumb, ErrorMessage } from '../../components/_components';
-import { useFamiliars } from '../../composables/_composables';
+// import { useFamiliars } from '../../composables/_composables';
 
 export default defineComponent({
   components: { Breadcrumb, ErrorMessage },
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const { familiar, Obtener_Familiar, Actualizar_Familiar } = useFamiliars();
+    // const { familiar, Obtener_Familiar, Actualizar_Familiar } = useFamiliars();
     const idFamiliar = Number(route.params.id);
 
        const isUploading = ref(false);
@@ -101,7 +101,7 @@ export default defineComponent({
       try {
         // Prepara el payload solo con los campos requeridos
        
-        await Actualizar_Familiar(idFamiliar);
+        // await Actualizar_Familiar(idFamiliar);
         router.push('/office/familiar');
       } catch (error) {
         // Manejo de error
@@ -112,16 +112,16 @@ export default defineComponent({
 
 
     onMounted(async () => {
-      await Obtener_Familiar(idFamiliar);
+      // await Obtener_Familiar(idFamiliar);
     });
 
     return {
       breadcrumbRoutes,
-      familiar,
+      // familiar,
       // errors,
       guardarCambios,
       cancelar,
-      Actualizar_Familiar
+      // Actualizar_Familiar
     };
   },
 });

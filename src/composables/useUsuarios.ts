@@ -20,120 +20,121 @@ export function useUsuario() {
   /**
    * Carga la lista de usuarios
    */
-  const Listar_Usuarios = async () => {
-    return ejecutar(
-      () => UsuariosService.listar(),
-      {
-        indicadorCarga: isLoading_Usuarios,
-        onExito: (response: any) => {
-          listaUsuarios.value = response || [];
-        }
-      }
-    );
-  };
+  // const Listar_Usuarios = async () => {
+  //   return ejecutar(
+  //     () => UsuariosService.listar(),
+  //     {
+  //       indicadorCarga: isLoading_Usuarios,
+  //       onExito: (response: any) => {
+  //         listaUsuarios.value = response || [];
+  //       }
+  //     }
+  //   );
+  // };
   /**
    * Registra un nuevo usuario
    */
-  const Crear_Usuario = async (): Promise<boolean> => {
-    if (!validarFormulario(NuevoUsuario.value)) return false;
+  // const Crear_Usuario = async (): Promise<boolean> => {
+  //   if (!validarFormulario(NuevoUsuario.value)) return false;
 
-    // Extraer solo los campos necesarios
-    const usuarioARegistrar: UsuarioCrear = {
-      usuarioNombre: NuevoUsuario.value.usuarioNombre,
-      pass: NuevoUsuario.value.pass,
-    };
+  //   // Extraer solo los campos necesarios
+  //   const usuarioARegistrar: UsuarioCrear = {
+  //     usuarioNombre: NuevoUsuario.value.usuarioNombre,
+  //     pass: NuevoUsuario.value.pass,
+  //   };
 
-    const resultado = await ejecutar(
-      () => UsuariosService.crear(usuarioARegistrar),
-      {
-        indicadorCarga: isLoading_Usuarios,
-        onExito: async (response: any) => {
-          if (response.success) {
-            NuevoUsuario.value = initializeUsuarioCrear();
-            await Listar_Usuarios();
-          } else {
-            throw new Error(response.message || 'Error al registrar usuario');
-          }
-        },
-        mensajeExito: 'Usuario registrado con éxito'
-      }
-    );
+  //   const resultado = await ejecutar(
+  //     () => UsuariosService.crear(usuarioARegistrar),
+  //     {
+  //       indicadorCarga: isLoading_Usuarios,
+  //       onExito: async (response: any) => {
+  //         if (response.success) {
+  //           NuevoUsuario.value = initializeUsuarioCrear();
+  //           await Listar_Usuarios();
+  //         } else {
+  //           throw new Error(response.message || 'Error al registrar usuario');
+  //         }
+  //       },
+  //       mensajeExito: 'Usuario registrado con éxito'
+  //     }
+  //   );
 
-    return !!resultado;
-  };
+  //   return !!resultado;
+  // };
   /**
    * Elimina un usuario
    */
-  const Eliminar_Usuario = async (id: number) => {
-    const isConfirmado = await Alerta.Confirmacion(
-      '¿Estás seguro de que deseas eliminar este usuario?',
-      'Esta acción no se puede deshacer.'
-    );
+  // const Eliminar_Usuario = async (id: number) => {
+  //   const isConfirmado = await Alerta.Confirmacion(
+  //     '¿Estás seguro de que deseas eliminar este usuario?',
+  //     'Esta acción no se puede deshacer.'
+  //   );
     
-    if (!isConfirmado) return;
+  //   if (!isConfirmado) return;
 
-    return ejecutar(
-      () => UsuariosService.eliminar(id),
-      {
-        indicadorCarga: isLoading_Usuarios,
-        onExito: async (response: any) => {
-          if (response.success) {
-            await Listar_Usuarios();
-          } else {
-            throw new Error(response.message || 'Error al eliminar usuario');
-          }
-        },
-        mensajeExito: 'Usuario eliminado con éxito'
-      }
-    );
-  };  /**
+  //   return ejecutar(
+  //     () => UsuariosService.eliminar(id),
+  //     {
+  //       indicadorCarga: isLoading_Usuarios,
+  //       onExito: async (response: any) => {
+  //         if (response.success) {
+  //           await Listar_Usuarios();
+  //         } else {
+  //           throw new Error(response.message || 'Error al eliminar usuario');
+  //         }
+  //       },
+  //       mensajeExito: 'Usuario eliminado con éxito'
+  //     }
+  //   );
+  // };  
+  /**
    * Elimina un usuario del DOM y de la lista
    */
-  const eliminarFilaUsuario = async (id: number, eliminarDelServidor: boolean = true) => {
+  // const eliminarFilaUsuario = async (id: number, eliminarDelServidor: boolean = true) => {
    
 
-      const isConfirmado = await Alerta.Confirmacion(
-        '¿Estás seguro de que deseas eliminar este usuario?',
-        'Esta acción no se puede deshacer.'
-      );
+  //     const isConfirmado = await Alerta.Confirmacion(
+  //       '¿Estás seguro de que deseas eliminar este usuario?',
+  //       'Esta acción no se puede deshacer.'
+  //     );
       
-      if (!isConfirmado) return;
+  //     if (!isConfirmado) return;
       
-      // Si se requiere eliminar del servidor primero
-      if (eliminarDelServidor) {
-        const resultado = await UsuariosService.eliminar(id);
-        if (!resultado.success) return false;
-      }
+  //     // Si se requiere eliminar del servidor primero
+  //     if (eliminarDelServidor) {
+  //       const resultado = await UsuariosService.eliminar(id);
+  //       if (!resultado.success) return false;
+  //     }
 
-      // Eliminar del DOM si existe
-      const fila = document.getElementById(`tr_usuario_${id}`);
-      if (fila) {
-        fila.remove();
-      }
+  //     // Eliminar del DOM si existe
+  //     const fila = document.getElementById(`tr_usuario_${id}`);
+  //     if (fila) {
+  //       fila.remove();
+  //     }
       
-      // Eliminar del array reactivo local (por si acaso)
-      const index = listaUsuarios.value.findIndex(u => u.id === id);
-      if (index > -1) {
-        listaUsuarios.value.splice(index, 1);
-      }
+  //     // Eliminar del array reactivo local (por si acaso)
+  //     const index = listaUsuarios.value.findIndex(u => u.id === id);
+  //     if (index > -1) {
+  //       listaUsuarios.value.splice(index, 1);
+  //     }
       
-      return true;
-  };
+  //     return true;
+  // };
 
   /**
    * Carga un usuario específico por ID
    */
-  const Obtener_Usuario = async (id: number) => {
-    return ejecutar(
-      () => UsuariosService.obtener(id),
-      {
-        indicadorCarga: isLoading_Usuarios,
-        onExito: (response: any) => {
-          usuario.value = response || initializeUsuario();
-        }
-      }
-    );
-  };
+  // const Obtener_Usuario = async (id: number) => {
+  //   return ejecutar(
+  //     () => UsuariosService.obtener(id),
+  //     {
+  //       indicadorCarga: isLoading_Usuarios,
+  //       onExito: (response: any) => {
+  //         usuario.value = response || initializeUsuario();
+  //       }
+  //     }
+  //   );
+  // };
 
   /**
    * Actualiza una oferta existente
@@ -157,11 +158,11 @@ export function useUsuario() {
     
     // Estados de carga
     isLoading_Usuarios,
-    Listar_Usuarios,
-    Crear_Usuario,
-    Eliminar_Usuario,
-    Obtener_Usuario,
-    eliminarFilaUsuario,
+    // Listar_Usuarios,
+    // Crear_Usuario,
+    // Eliminar_Usuario,
+    // Obtener_Usuario,
+    // eliminarFilaUsuario,
     resetFormulario
   };
 }

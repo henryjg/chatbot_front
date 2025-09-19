@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-debug-panel">
+  <!-- <div class="auth-debug-panel"> -->
     <h3>🔧 Panel de Debug de Autenticación</h3>
     
     <div class="debug-section">
@@ -7,43 +7,43 @@
       <div class="status-grid">
         <div class="status-item">
           <strong>Autenticado:</strong> 
-          <span :class="authStore.isAuthenticated ? 'status-ok' : 'status-error'">
+          <!-- <span :class="authStore.isAuthenticated ? 'status-ok' : 'status-error'">
             {{ authStore.isAuthenticated ? 'Sí' : 'No' }}
-          </span>
+          </span> -->
         </div>
         <div class="status-item">
           <strong>Access Token:</strong> 
-          <span :class="authStore.accessToken ? 'status-ok' : 'status-error'">
+          <!-- <span :class="authStore.accessToken ? 'status-ok' : 'status-error'">
             {{ authStore.accessToken ? 'Presente' : 'Ausente' }}
-          </span>
+          </span> -->
         </div>
         <div class="status-item">
           <strong>Refresh Token:</strong> 
-          <span :class="authStore.refreshToken ? 'status-ok' : 'status-error'">
+          <!-- <span :class="authStore.refreshToken ? 'status-ok' : 'status-error'">
             {{ authStore.refreshToken ? 'Presente' : 'Ausente' }}
-          </span>
+          </span> -->
         </div>
         <div class="status-item">
           <strong>Expiración:</strong> 
-          <span :class="tokenStatus.class">{{ tokenStatus.text }}</span>
+          <!-- <span :class="tokenStatus.class">{{ tokenStatus.text }}</span> -->
         </div>
       </div>
     </div>
 
     <div class="debug-section">
       <h4>🔍 Detalles del Token</h4>
-      <div v-if="authStore.accessToken" class="token-details">
+      <!-- <div v-if="authStore.accessToken" class="token-details">
         <p><strong>Token (primeros 50 chars):</strong> {{ authStore.accessToken.substring(0, 50) }}...</p>
         <p><strong>Expiración almacenada:</strong> {{ authStore.tokenExpiration || 'No disponible' }}</p>
         <p v-if="jwtPayload"><strong>Expiración del JWT:</strong> {{ new Date(jwtPayload.exp * 1000).toLocaleString() }}</p>
         <p v-if="jwtPayload"><strong>Usuario del JWT:</strong> {{ jwtPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'] }}</p>
       </div>
       <p v-else class="no-token">No hay token disponible</p>
-    </div>
+    </div> -->
 
     <div class="debug-section">
       <h4>🚀 Acciones de Test</h4>
-      <div class="buttons-grid">
+      <!-- <div class="buttons-grid">
         <button @click="testRefreshToken" :disabled="!authStore.refreshToken || isLoading" class="btn-test">
           {{ isLoading ? 'Renovando...' : '🔄 Test Refresh Token' }}
         </button>
@@ -56,7 +56,7 @@
         <button @click="clearTokens" :disabled="isLoading" class="btn-test btn-danger">
           🗑️ Limpiar Tokens
         </button>
-      </div>
+      </div> -->
     </div>
 
     <div class="debug-section" v-if="logs.length > 0">
@@ -74,46 +74,46 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
-import { useAuthStore } from '../stores/authStore';
-import api from '../services/axiosConfig';
+// import { useAuthStore } from '../stores/authStore';
+// import api from '../services/axiosConfig';
 
-const authStore = useAuthStore();
+// const authStore = useAuthStore();
 const isLoading = ref(false);
 const logs = ref<Array<{type: string, message: string, time: string}>>([]);
 
 // Computed para el estado del token
-const tokenStatus = computed(() => {
-  if (!authStore.tokenExpiration) {
-    return { text: 'No disponible', class: 'status-error' };
-  }
+// const tokenStatus = computed(() => {
+//   if (!authStore.tokenExpiration) {
+//     return { text: 'No disponible', class: 'status-error' };
+//   }
   
-  const expDate = new Date(authStore.tokenExpiration);
+  // const expDate = new Date(authStore.tokenExpiration);
   const now = new Date();
-  const timeLeft = Math.floor((expDate.getTime() - now.getTime()) / 1000);
+//   const timeLeft = Math.floor((expDate.getTime() - now.getTime()) / 1000);
   
-  if (timeLeft <= 0) {
-    return { text: 'Expirado', class: 'status-error' };
-  } else if (timeLeft <= 300) {
-    return { text: `Expira pronto (${timeLeft}s)`, class: 'status-warning' };
-  } else {
-    return { text: `${timeLeft}s restantes`, class: 'status-ok' };
-  }
-});
+//   if (timeLeft <= 0) {
+//     return { text: 'Expirado', class: 'status-error' };
+//   } else if (timeLeft <= 300) {
+//     return { text: `Expira pronto (${timeLeft}s)`, class: 'status-warning' };
+//   } else {
+//     return { text: `${timeLeft}s restantes`, class: 'status-ok' };
+//   }
+// });
 
 // Decodificar JWT payload
-const jwtPayload = computed(() => {
-  if (!authStore.accessToken) return null;
+// const jwtPayload = computed(() => {
+//   if (!authStore.accessToken) return null;
   
-  try {
-    const parts = authStore.accessToken.split('.');
-    if (parts.length === 3) {
-      return JSON.parse(atob(parts[1]));
-    }
-  } catch (e) {
-    console.error('Error decodificando JWT:', e);
-  }
-  return null;
-});
+//   try {
+//     const parts = authStore.accessToken.split('.');
+//     if (parts.length === 3) {
+//       return JSON.parse(atob(parts[1]));
+//     }
+//   } catch (e) {
+//     console.error('Error decodificando JWT:', e);
+//   }
+//   return null;
+// });
 
 // Funciones de logging
 const addLog = (type: string, message: string) => {
@@ -130,60 +130,60 @@ const addLog = (type: string, message: string) => {
 };
 
 // Test de refresh token
-const testRefreshToken = async () => {
-  isLoading.value = true;
-  try {
-    addLog('info', 'Iniciando test de refresh token...');
-    const oldToken = authStore.accessToken;
+// const testRefreshToken = async () => {
+//   isLoading.value = true;
+//   try {
+//     addLog('info', 'Iniciando test de refresh token...');
+//     const oldToken = authStore.accessToken;
     
-    await authStore.refreshAccessToken();
+//     await authStore.refreshAccessToken();
     
-    const newToken = authStore.accessToken;
-    if (oldToken !== newToken) {
-      addLog('success', 'Token renovado exitosamente');
-    } else {
-      addLog('warning', 'Token no cambió tras el refresh');
-    }
-  } catch (error: any) {
-    addLog('error', `Error en refresh: ${error.message}`);
-  } finally {
-    isLoading.value = false;
-  }
-};
+//     const newToken = authStore.accessToken;
+//     if (oldToken !== newToken) {
+//       addLog('success', 'Token renovado exitosamente');
+//     } else {
+//       addLog('warning', 'Token no cambió tras el refresh');
+//     }
+//   } catch (error: any) {
+//     addLog('error', `Error en refresh: ${error.message}`);
+//   } finally {
+//     isLoading.value = false;
+//   }
+// };
 
 // Test de llamada a API
-const testApiCall = async () => {
-  isLoading.value = true;
-  try {
-    addLog('info', 'Probando llamada a API...');
+// const testApiCall = async () => {
+//   isLoading.value = true;
+//   try {
+//     addLog('info', 'Probando llamada a API...');
     
-    // Hacer una llamada a algún endpoint protegido
-    const response = await api.get('/apikeys');
+//     // Hacer una llamada a algún endpoint protegido
+//     const response = await api.get('/apikeys');
     
-    addLog('success', `API call exitosa: ${response.status}`);
-  } catch (error: any) {
-    addLog('error', `Error en API call: ${error.response?.status} - ${error.message}`);
-  } finally {
-    isLoading.value = false;
-  }
-};
+//     addLog('success', `API call exitosa: ${response.status}`);
+//   } catch (error: any) {
+//     addLog('error', `Error en API call: ${error.response?.status} - ${error.message}`);
+//   } finally {
+//     isLoading.value = false;
+//   }
+// };
 
 // Forzar expiración del token
-const forceTokenExpiry = () => {
-  const expiredTime = new Date();
-  expiredTime.setSeconds(expiredTime.getSeconds() - 10); // 10 segundos en el pasado
+// const forceTokenExpiry = () => {
+//   const expiredTime = new Date();
+//   expiredTime.setSeconds(expiredTime.getSeconds() - 10); // 10 segundos en el pasado
   
-  authStore.tokenExpiration = expiredTime.toISOString();
-  authStore.saveToLocalStorage();
+//   authStore.tokenExpiration = expiredTime.toISOString();
+//   authStore.saveToLocalStorage();
   
-  addLog('warning', 'Token forzado a expirar');
-};
+//   addLog('warning', 'Token forzado a expirar');
+// };
 
-// Limpiar tokens
-const clearTokens = () => {
-  authStore.logout();
-  addLog('info', 'Tokens limpiados manualmente');
-};
+// // Limpiar tokens
+// const clearTokens = () => {
+//   authStore.logout();
+//   addLog('info', 'Tokens limpiados manualmente');
+// };
 
 // Limpiar logs
 const clearLogs = () => {

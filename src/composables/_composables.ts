@@ -40,10 +40,10 @@ export { useErrorHandler } from './Tools/useErrorHandler';
 // export { useFileUpload } from './use_ArchivosUpload';
 
 // Composables de validación
-export { useValidaOferta } from './Validaciones/useValidaOfertas';
-export { useValidaNegocio } from './Validaciones/useValidarNegocio';
+// export { useValidaOferta } from './Validaciones/useValidaOfertas';
+// export { useValidaNegocio } from './Validaciones/useValidarNegocio';
 export { useValidaCategoria } from './Validaciones/useValidaCategoria';
-export { useValidaConvenio } from './Validaciones/useValidaConvenio';
+// export { useValidaConvenio } from './Validaciones/useValidaConvenio';
 export { useValidaCategoria_noticia } from './Validaciones/useValidaCategoria_noticia';
 export { useValidaCliente } from './Validaciones/useValidaCliente';
 export { useValidator } from './Validaciones/useValidator';

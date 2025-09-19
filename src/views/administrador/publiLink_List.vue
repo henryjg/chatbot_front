@@ -156,7 +156,7 @@ import { ref, onMounted, defineComponent } from 'vue';
 import { Modal } from 'bootstrap';
 
 // Centralized imports
-import { CardLayout, DataTable, Divloading, CardPublicidad, ImgLazy } from '../../components/_components';
+import { CardLayout, DataTable, Divloading, ImgLazy } from '../../components/_components';
 // import { usePublicidad } from '../../composables/_composables';
 
 // Modal imports (these are specific modal components)
@@ -171,7 +171,7 @@ export default defineComponent({
     // modal_editar_publicidad,
     Divloading,
     ImgLazy,
-    CardPublicidad,
+    // CardPublicidad,
     FileUploader
   },  setup() {
     // const { listaPublicidad, Listar_Publicidad, Eliminar_publicidad } = usePublicidad();

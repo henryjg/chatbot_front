@@ -31,7 +31,7 @@
 
         <div class="d-grid mt-4">
             <button v-if="tipoUsuario=='Administrador' || tipoUsuario=='Negocio'" type="button" @click="IniciarSession" class="btn btn-primary"><i class="fas fa-user-lock m-r-10"></i> Ingresar</button>
-            <button v-else type="button" @click="IniciarSession_solodocumento" class="btn btn-primary"><i class="fas fa-user-lock m-r-10"></i> Ingresar sin documento</button>
+            <button v-else type="button" @click="" class="btn btn-primary"><i class="fas fa-user-lock m-r-10"></i> Ingresar sin documento</button>
         </div>
         <div class="d-grid mt-4 text-center">
             <RouterLink to="/beneficios/GenerarPassword" class="text-hover-light btn btn-warning bg-yellow-900 border-0">
@@ -83,7 +83,7 @@ export default {
     ModalPassword
   },
   setup() {
-    const { login, login_solodocumento } = usarAutenticacion();
+    const { login } = usarAutenticacion();
     const usuario = ref('');
     const contrasena = ref('');
     const tipoUsuario = ref('Cliente');
@@ -120,19 +120,19 @@ export default {
       }
     };
 
-    const IniciarSession_solodocumento = async () => {
-      try {
-        // Guardar usuario y contraseña en localStorage para validación en inicio.vue
-        localStorage.setItem('lastLoginUser', usuario.value);
-        const response = await login_solodocumento(usuario.value, tipoUsuario.value);
-      } catch (error) {
-        console.error('Error al iniciar sesión', error);
-      }
-    };
+    // const IniciarSession_solodocumento = async () => {
+    //   try {
+    //     // Guardar usuario y contraseña en localStorage para validación en inicio.vue
+    //     localStorage.setItem('lastLoginUser', usuario.value);
+    //     const response = await login_solodocumento(usuario.value, tipoUsuario.value);
+    //   } catch (error) {
+    //     console.error('Error al iniciar sesión', error);
+    //   }
+    // };
 
     return {
       IniciarSession,
-      IniciarSession_solodocumento,
+      // IniciarSession_solodocumento,
       usuario,
       contrasena,
       passwordErrors, 

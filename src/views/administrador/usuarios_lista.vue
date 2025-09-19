@@ -6,7 +6,7 @@
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addUsuarioModal">
           <i class="fas fa-user-plus"></i> Agregar
         </button>
-        <button @click="Listar_Usuarios" class="btn btn-blue b-dark btn-sm mx-1">
+        <button @click="" class="btn btn-blue b-dark btn-sm mx-1">
           <i class="ti ti-refresh"></i>
         </button>
         <button @click="resetear" class="btn btn-secondary btn-sm mx-1">
@@ -38,7 +38,7 @@
               <td class="text-sm">{{ item.nroingresos }}</td>
               <td class="text-sm">{{ FormatFecha.fecha_dd_mm_yyyy(item.lastconexion) }}</td>
               <td class="text-sm">
-                <a href="#" @click.prevent="eliminarFilaUsuario(item.id,true)" class="btn btn-light-danger btn-sm">
+                <a href="#" @click.prevent="(item.id,true)" class="btn btn-light-danger btn-sm">
                   <i class="ti ti-trash f-20"></i>
                 </a>
                 <a href="#" @click.prevent="abrirModalCambiarContrasena(item.id)" class="btn btn-light-warning btn-sm">
@@ -121,16 +121,16 @@ export default {
     ErrorMessage
   },
   setup() {    
-    const { listaUsuarios, Listar_Usuarios, Eliminar_Usuario, Crear_Usuario, NuevoUsuario, errors, isLoading_Usuarios,eliminarFilaUsuario } = useUsuario();
+    const { listaUsuarios, NuevoUsuario, errors, isLoading_Usuarios } = useUsuario();
     const searchQuery = ref('');
     const itemsPerPage = ref(10);
     const currentPage = ref(1);
     const newPassword = ref('');
     const confirmPassword = ref('');
     const selectedUserId = ref<string | null>(null);
-    const { cambiarPass } = usarAutenticacion();
+    // const { cambiarPass } = usarAutenticacion();
     onMounted(async () => {
-      await Listar_Usuarios();
+      // await Listar_Usuarios();
     });
 
     const filteredUsuarios = computed(() => {
@@ -157,8 +157,10 @@ export default {
       { text: 'Ingresos', width: '10%', key: 'nroingresos' },
       { text: 'Ultima Conexion', width: '10%', key: 'lastconexion' },
       { text: 'Acciones', width: '5%', key: 'acciones' },
-    ]);    const resetear = () => {
-      Listar_Usuarios();
+    ]);    
+    
+    const resetear = () => {
+      // Listar_Usuarios();
     };
 
     const closeModal = () => {
@@ -168,7 +170,7 @@ export default {
         if (modal) modal.hide();
       }
     };    const guardarUsuarioYcerrarModal = async () => {
-      await Crear_Usuario();
+      // await Crear_Usuario();
       closeModal();
     };
 
@@ -195,7 +197,7 @@ export default {
         return;
       }
       try {
-        await cambiarPass(selectedUserId.value, newPassword.value);
+        // await cambiarPass(selectedUserId.value, newPassword.value);
         Alerta.Sucessfull('Exito', 'La contraseña ha sido cambiada exitosamente.');
         const modalElement = document.getElementById("changePasswordModal");
         if (modalElement) {
@@ -210,7 +212,7 @@ export default {
 
     return {
       listaUsuarios,
-      Eliminar_Usuario,
+      // Eliminar_Usuario,
       guardarUsuarioYcerrarModal,
       NuevoUsuario,
       errors,
@@ -222,11 +224,11 @@ export default {
       headers,
       isLoading_Usuarios,
       resetear,
-      Listar_Usuarios,
+      // Listar_Usuarios,
       closeModal,
       FormatFecha,
       onPageChange,
-      eliminarFilaUsuario,
+      // eliminarFilaUsuario,
       newPassword,
       confirmPassword,
       abrirModalCambiarContrasena,

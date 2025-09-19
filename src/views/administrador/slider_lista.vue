@@ -5,7 +5,7 @@
       <div class="d-flex columns justify-content-end">
         <button 
           v-if="isReordenarModeActive" 
-          @click="guardarReordenamiento" 
+          @click="" 
           class="btn btn-success btn-sm me-2"
           :disabled="isLoadingReorder"
         >
@@ -155,12 +155,12 @@ export default defineComponent({  components: {
     const { 
       listaSliders, 
       Listar_Slider, 
-      Listar_Slider_Ordenados,
+      // Listar_Slider_Ordenados,
       Eliminar_Slider, 
       actualizarEstado, 
       prepararModalCrear, 
       prepararModalEditar, 
-      Reordenar_Sliders,
+      // Reordenar_Sliders,
       slidersOrdenados,
       isLoadingReorder
     } = useSliders();
@@ -207,7 +207,7 @@ export default defineComponent({  components: {
     const cargar_sliders = async () => {
       isloading.value = true;
       try {
-        await Listar_Slider_Ordenados();
+        // await Listar_Slider_Ordenados();
       } finally {
         isloading.value = false; 
       }
@@ -311,25 +311,28 @@ export default defineComponent({  components: {
         sortableInstance.destroy();
         sortableInstance = null;
       }
-    };    const guardarReordenamiento = async () => {
-      try {
-        // Llamar al servicio para guardar el nuevo orden
-        const resultado = await Reordenar_Sliders(slidersReordenados.value);
-        if (resultado) {
-          // Limpiar y volver al modo normal
-          if (sortableInstance) {
-            sortableInstance.destroy();
-            sortableInstance = null;
-          }
-          isReordenarModeActive.value = false;
-          await Listar_Slider_Ordenados();
-          Notif.Success('El orden de los sliders ha sido actualizado correctamente');
-        }
-      } catch (error) {
-        console.error('Error al guardar el reordenamiento:', error);
-        Alerta.Error('Error', 'No se pudo guardar el nuevo orden de los sliders');
-      }
-    };    return {
+    };    
+    
+    // const guardarReordenamiento = async () => {
+    //   try {
+    //     // Llamar al servicio para guardar el nuevo orden
+    //     const resultado = await Reordenar_Sliders(slidersReordenados.value);
+    //     if (resultado) {
+    //       // Limpiar y volver al modo normal
+    //       if (sortableInstance) {
+    //         sortableInstance.destroy();
+    //         sortableInstance = null;
+    //       }
+    //       isReordenarModeActive.value = false;
+    //       await Listar_Slider_Ordenados();
+    //       Notif.Success('El orden de los sliders ha sido actualizado correctamente');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error al guardar el reordenamiento:', error);
+    //     Alerta.Error('Error', 'No se pudo guardar el nuevo orden de los sliders');
+    //   }
+    // };   
+     return {
       headers,
       listaSliders,
       slidersOrdenados,
@@ -338,7 +341,7 @@ export default defineComponent({  components: {
       isloading,
       loadingStates,
       Listar_Slider,
-      Listar_Slider_Ordenados,
+      // Listar_Slider_Ordenados,
       Eliminar_Slider,
       selectedSliderId,
       cambiarEstado,
@@ -346,7 +349,7 @@ export default defineComponent({  components: {
       isReordenarModeActive,
       activarModoReordenar,
       cancelarReordenamiento,
-      guardarReordenamiento,
+      // guardarReordenamiento,
       slidersReordenados,
       isLoadingReorder,
       sortableContainer

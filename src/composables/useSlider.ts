@@ -37,30 +37,30 @@ export function useSliders() {
   };
 
   // Carga la lista de sliders ordenados
-  const Listar_Slider_Ordenados = async () => {
-    return ejecutar(
-      () => WebSliderService.listarOrdenados(),
-      {
-        indicadorCarga: isLoading_Slider,
-        onExito: (response: any) => {
-          listaSliders.value = response || [];
-        }
-      }
-    );
-  };
+  // const Listar_Slider_Ordenados = async () => {
+  //   return ejecutar(
+  //     () => WebSliderService.listarOrdenados(),
+  //     {
+  //       indicadorCarga: isLoading_Slider,
+  //       onExito: (response: any) => {
+  //         listaSliders.value = response || [];
+  //       }
+  //     }
+  //   );
+  // };
 
   //  Carga la lista de sliders activos
-  const Listar_Slider_Activos = async () => {
-    return ejecutar(
-      () => WebSliderService.listarActivos(),
-      {
-        indicadorCarga: isLoading_Slider,
-        onExito: (response: any) => {
-          listaSliders.value = response || [];
-        }
-      }
-    );
-  };
+  // const Listar_Slider_Activos = async () => {
+  //   return ejecutar(
+  //     () => WebSliderService.listarActivos(),
+  //     {
+  //       indicadorCarga: isLoading_Slider,
+  //       onExito: (response: any) => {
+  //         listaSliders.value = response || [];
+  //       }
+  //     }
+  //   );
+  // };
   
   // Guarda un nuevo slider
   const Crear_Slider = async (): Promise<boolean> => {
@@ -108,34 +108,34 @@ export function useSliders() {
   };
   
   // Reordena los sliders
-  const Reordenar_Sliders = async (sliders: Slider[]): Promise<boolean> => {
-    // Crear la estructura para el endpoint
-    const listaOrden: SliderOrdenRequest[] = sliders.map((slider, index) => ({
-      sliderId: slider.id,
-      nuevoOrden: index + 1 // El orden comienza en 1
-    }));
+  // const Reordenar_Sliders = async (sliders: Slider[]): Promise<boolean> => {
+  //   // Crear la estructura para el endpoint
+  //   const listaOrden: SliderOrdenRequest[] = sliders.map((slider, index) => ({
+  //     sliderId: slider.id,
+  //     nuevoOrden: index + 1 // El orden comienza en 1
+  //   }));
 
-    const requestData: ReordenarSlidersRequest = {
-      listaOrden
-    };
+  //   const requestData: ReordenarSlidersRequest = {
+  //     listaOrden
+  //   };
 
-    const resultado = await ejecutar(
-      () => WebSliderService.reordenarSliders(requestData),
-      {
-        indicadorCarga: isLoadingReorder,
-        onExito: async (response: any) => {
-          if (response.success) {
-            await Listar_Slider_Ordenados();
-          } else {
-            throw new Error(response.message || 'Error al reordenar los sliders');
-          }
-        },
-        mensajeExito: 'Sliders reordenados con éxito'
-      }
-    );
+  //   const resultado = await ejecutar(
+  //     () => WebSliderService.reordenarSliders(requestData),
+  //     {
+  //       indicadorCarga: isLoadingReorder,
+  //       onExito: async (response: any) => {
+  //         if (response.success) {
+  //           await Listar_Slider_Ordenados();
+  //         } else {
+  //           throw new Error(response.message || 'Error al reordenar los sliders');
+  //         }
+  //       },
+  //       mensajeExito: 'Sliders reordenados con éxito'
+  //     }
+  //   );
 
-    return !!resultado;
-  };
+  //   return !!resultado;
+  // };
   
   //Elimina un slider
   const Eliminar_Slider = async (id: number) => {
@@ -253,14 +253,14 @@ export function useSliders() {
     
     // Operaciones
     Listar_Slider,
-    Listar_Slider_Activos,
-    Listar_Slider_Ordenados,
+    // Listar_Slider_Activos,
+    // Listar_Slider_Ordenados,
     Crear_Slider,
     Actualizar_Slider,
     Eliminar_Slider,
     Obtener_Slider,
     actualizarEstado,
-    Reordenar_Sliders,
+    // Reordenar_Sliders,
     
     // Utilidades de formulario
     resetFormulario,

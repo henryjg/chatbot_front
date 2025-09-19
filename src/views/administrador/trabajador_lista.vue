@@ -32,10 +32,10 @@
             <i class="fas fa-user-plus"></i> Agregar
           </button>
         </router-link>
-        <button type="button" @click="ExportarExcelTrabajador" class="btn btn-success float-end">
+        <button type="button" @click="" class="btn btn-success float-end">
           <i class="fa fa-file-excel"></i> Excel
         </button>
-        <button @click="cargarTrabajadoresPaginados" class="btn btn-blue b-dark btn-sm mx-1">
+        <button @click="" class="btn btn-blue b-dark btn-sm mx-1">
           <i class="ti ti-refresh"></i>
         </button>
         <button @click="resetear" class="btn btn-secondary btn-sm mx-1">
@@ -54,10 +54,7 @@
         :loading="isLoading_Trabajador"
         :clasehead="'bg-info-100'"
         searchPlaceholder="Buscar trabajadores..."
-        @search="handleSearch"
-        @page-change="handlePageChange"
-        @per-page-change="handlePerPageChange"
-        @clear-search="handleClearSearch"
+
       >
         <template #default="{ item, index }">
           <tr :id="'tr_trabajador_'+item.id">
@@ -79,7 +76,7 @@
             </td>
             <td class="text-wrap text-sm">{{  FormatFecha.fecha_dd_mm_yyyy(item.fechaNacimiento) }}</td>
             <td class="text-wrap text-sm">{{ item.dni }}</td>
-            <td class="text-wrap text-sm">{{ getOficinaNombre(item.oficinaId) }}</td>
+            <!-- <td class="text-wrap text-sm">{{ getOficinaNombre(item.oficinaId) }}</td> -->
             <td class="text-wrap text-sm">
               {{ item.celular }}
               <a :href="`https://wa.me/+51${item.celular}`" target="_blank" rel="noopener" class="ms-2">
@@ -88,12 +85,12 @@
             </td>
             <td class="text-wrap text-sm">
               <div class="form-check form-switch custom-switch-v1 mb-1">
-                <input type="checkbox"  
+                <!-- <input type="checkbox"  
                        class="form-check-input input-success" 
                        :id="`customswitch-${item.id}`" 
                        :checked="item.estado" 
                        :disabled="loadingStates[item.id]"
-                       @change="cambiarEstado(item, ($event.target as HTMLInputElement)?.checked)" />
+                       @change="cambiarEstado(item, ($event.target as HTMLInputElement)?.checked)" /> -->
                   <div v-if="loadingStates[item.id]" class="d-flex align-items-center me-2 position-absolute">
                     <span class="spinner-border spinner-border-sm text-info me-2 " role="status" aria-hidden="true"></span>
                   </div>
@@ -108,7 +105,7 @@
               </router-link>
               <button 
                 type="button"
-                @click="Eliminar_Trabajador_Fila(item.id)"
+                @click="(item.id)"
                 class="avtar avtar-xs btn btn-danger"
                 :disabled="item.nrocupones > 0"
                 :title="item.nrocupones > 0 ? 'No se puede eliminar: tiene cupones asociados.' : 'Eliminar trabajador'"
@@ -131,9 +128,9 @@
 
 <script lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import { DOC_URL } from '../../config';
+// import { DOC_URL } from '../../config';
 import { CardLayout, DataTablePaginated, ImgLazy } from '../../components/_components';
-import { useTrabajador, useOficina } from '../../composables/_composables';
+import { useTrabajador } from '../../composables/_composables';
 import { FormatFecha } from '../../utils/_utils';
 import type { Trabajador } from '../../interfaces/_interface';
 
@@ -145,8 +142,8 @@ export default {
   },
   setup() {
     // Composable y estados
-  const { ListaTrabajadores, cambiarEstado: cambiarEstadoOriginal, Listar_Trabajadores_Paginados, Eliminar_Trabajador_Fila, ExportarExcelTrabajador, actualizarEstadoTrabajador, isLoading_Trabajador } = useTrabajador();
-    const { cargarOficinas, listaOficinas } = useOficina();
+  const { ListaTrabajadores,  isLoading_Trabajador } = useTrabajador();
+    // const { cargarOficinas, listaOficinas } = useOficina();
     const loadingStates = ref<{ [key: number]: boolean }>({});
 
     // Estados para paginación y búsqueda
@@ -176,64 +173,64 @@ export default {
     const resetear = () => {
       busqueda.value = '';
       paginaActual.value = 1;
-      cargarTrabajadoresPaginados();
+      // cargarTrabajadoresPaginados();
     };
 
     // Obtener nombre de oficina
-    const getOficinaNombre = (oficinaId: string) => {
-      const oficina = listaOficinas.value.find((of: any) => String(of.id) === String(oficinaId));
-      return oficina ? oficina.nombre : 'Ninguna';
-    };
+    // const getOficinaNombre = (oficinaId: string) => {
+    //   const oficina = listaOficinas.value.find((of: any) => String(of.id) === String(oficinaId));
+    //   return oficina ? oficina.nombre : 'Ninguna';
+    // };
 
     // Cargar trabajadores paginados
-    const cargarTrabajadoresPaginados = async () => {
-      await Listar_Trabajadores_Paginados(
-        paginaActual.value,
-        registrosPorPagina.value,
-        busqueda.value
-      ).then((response: any) => {
-        ListaTrabajadoresPaginated.value = response?.data?.data || [];
-        const pag = response?.data?.pagination;
-        paginacionInfo.value = {
-          pagina_actual: pag.currentPage,
-          registros_por_pagina: pag.pageSize,
-          total_registros: pag.totalItems,
-          total_paginas: pag.totalPages,
-          pagina_anterior: pag.hasPreviousPage ? pag.currentPage - 1 : null,
-          pagina_siguiente: pag.hasNextPage ? pag.currentPage + 1 : null,
-          paginas_visibles: [],
-          desde: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[0]) : 0,
-          hasta: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[1]) : 0
-        };
-      });
-    };
+    // const cargarTrabajadoresPaginados = async () => {
+    //   await Listar_Trabajadores_Paginados(
+    //     paginaActual.value,
+    //     registrosPorPagina.value,
+    //     busqueda.value
+    //   ).then((response: any) => {
+    //     ListaTrabajadoresPaginated.value = response?.data?.data || [];
+    //     const pag = response?.data?.pagination;
+    //     paginacionInfo.value = {
+    //       pagina_actual: pag.currentPage,
+    //       registros_por_pagina: pag.pageSize,
+    //       total_registros: pag.totalItems,
+    //       total_paginas: pag.totalPages,
+    //       pagina_anterior: pag.hasPreviousPage ? pag.currentPage - 1 : null,
+    //       pagina_siguiente: pag.hasNextPage ? pag.currentPage + 1 : null,
+    //       paginas_visibles: [],
+    //       desde: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[0]) : 0,
+    //       hasta: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[1]) : 0
+    //     };
+    //   });
+    // };
 
     // Nueva función para cambiar estado y refrescar la lista paginada
-    const cambiarEstado = async (trabajador: Trabajador, nuevoEstado: boolean) => {
-      await cambiarEstadoOriginal(trabajador, nuevoEstado);
-      await cargarTrabajadoresPaginados();
-    };
+    // const cambiarEstado = async (trabajador: Trabajador, nuevoEstado: boolean) => {
+    //   await cambiarEstadoOriginal(trabajador, nuevoEstado);
+    //   await cargarTrabajadoresPaginados();
+    // };
 
     // Eventos de paginación y búsqueda
-    const handleSearch = (args: { term: string; field: string }) => {
-      busqueda.value = args.term;
-      paginaActual.value = 1;
-      cargarTrabajadoresPaginados();
-    };
-    const handlePageChange = (page: number) => {
-      paginaActual.value = page;
-      cargarTrabajadoresPaginados();
-    };
-    const handlePerPageChange = (perPage: number) => {
-      registrosPorPagina.value = perPage;
-      paginaActual.value = 1;
-      cargarTrabajadoresPaginados();
-    };
-    const handleClearSearch = () => {
-      busqueda.value = '';
-      paginaActual.value = 1;
-      cargarTrabajadoresPaginados();
-    };
+    // const handleSearch = (args: { term: string; field: string }) => {
+    //   busqueda.value = args.term;
+    //   paginaActual.value = 1;
+    //   cargarTrabajadoresPaginados();
+    // };
+    // const handlePageChange = (page: number) => {
+    //   paginaActual.value = page;
+    //   cargarTrabajadoresPaginados();
+    // };
+    // const handlePerPageChange = (perPage: number) => {
+    //   registrosPorPagina.value = perPage;
+    //   paginaActual.value = 1;
+    //   cargarTrabajadoresPaginados();
+    // };
+    // const handleClearSearch = () => {
+    //   busqueda.value = '';
+    //   paginaActual.value = 1;
+    //   cargarTrabajadoresPaginados();
+    // };
 
     // Computed para cards resumen
     const totalTrabajadoresActivos = computed(() =>
@@ -250,8 +247,8 @@ export default {
 
     // Inicializar
     onMounted(async () => {
-      await cargarOficinas();
-      await cargarTrabajadoresPaginados();
+      // await cargarOficinas();
+      // await cargarTrabajadoresPaginados();
     });
 
     return {
@@ -261,21 +258,21 @@ export default {
       registrosPorPagina,
       busqueda,
       headerdatatable,
-      getOficinaNombre,
-      cargarTrabajadoresPaginados,
-      handleSearch,
-      handlePageChange,
-      handlePerPageChange,
-      handleClearSearch,
-      ExportarExcelTrabajador,
-      Eliminar_Trabajador_Fila,
-      actualizarEstadoTrabajador,
-      cambiarEstado,
+      // getOficinaNombre,
+      // cargarTrabajadoresPaginados,
+      // handleSearch,
+      // handlePageChange,
+      // handlePerPageChange,
+      // handleClearSearch,
+      // ExportarExcelTrabajador,
+      // Eliminar_Trabajador_Fila,
+      // actualizarEstadoTrabajador,
+      // cambiarEstado,
       loadingStates,
       isLoading_Trabajador,
       FormatFecha,
-      listaOficinas,
-      cargarOficinas,
+      // listaOficinas,
+      // cargarOficinas,
       totalTrabajadoresActivos,
       totalTrabajadoresInactivos,
       resetear,

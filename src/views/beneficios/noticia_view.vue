@@ -4,51 +4,51 @@
     <div class="container pt-5">
       <div class="row justify-content-center">
         <div class="col-md-8 px-5 text-center"> 
-          <h2 class="pt-4" v-if="noticia">{{ noticia.titulo }}</h2>
+          <!-- <h2 class="pt-4" v-if="noticia">{{ noticia.titulo }}</h2> -->
 
           <!-- ------------------------ -->
-          <p class=" text-yellow-800 text-end justify-content-center">
-            {{ FormatFecha.fecha_dddd_mmmm_yyyy(noticia.fechaRegistro) }}</p>
+          <!-- <p class=" text-yellow-800 text-end justify-content-center">
+            {{ FormatFecha.fecha_dddd_mmmm_yyyy(noticia.fechaRegistro) }}</p> -->
 
           <!-- ------------------------ -->
-          <div class="image-container">
+          <!-- <div class="image-container">
             <img class="img-fluid rounded-4 d-block mx-auto w-100" :src="noticia.url_ImagenDestacada" />
-          </div>
+          </div> -->
           <!-- ------------------------ -->
 
-          <h4 class="pt-4" v-if="noticia.subtitulo!==''">{{ noticia.subtitulo }}</h4>
+          <!-- <h4 class="pt-4" v-if="noticia.subtitulo!==''">{{ noticia.subtitulo }}</h4> -->
           <!-- ------------------------ -->
 
-          <div v-if="noticia.curpohtml_box1!==''"
-              v-html="noticia.curpohtml_box1" class="my-4 text-justify"></div>
+          <!-- <div v-if="noticia.curpohtml_box1!==''"
+              v-html="noticia.curpohtml_box1" class="my-4 text-justify"></div> -->
 
           <!-- ------------------------ -->
-          <div v-if="noticia.url_Imagen2!==''" class="image-container my-5">
+          <!-- <div v-if="noticia.url_Imagen2!==''" class="image-container my-5">
             <img class="img-fluid rounded-4 d-block mx-auto w-100" :src="noticia.url_Imagen2" />
-          </div>
+          </div> -->
 
           <!-- ------------------------ -->
-          <div  v-if="noticia.curpohtml_box2!==''" 
-                v-html="noticia.curpohtml_box2" class="my-4 text-justify"></div>
+          <!-- <div  v-if="noticia.curpohtml_box2!==''" 
+                v-html="noticia.curpohtml_box2" class="my-4 text-justify"></div> -->
 
           <!-- ------------------------ -->
-          <div v-if="noticia.url_Imagen3!==''"  class="image-container my-5">
+          <!-- <div v-if="noticia.url_Imagen3!==''"  class="image-container my-5">
             <img class="img-fluid rounded-4 d-block mx-auto w-100" :src="noticia.url_Imagen3" />
-          </div>
+          </div> -->
 
           <!-- ------------------------ -->
-          <div v-if="noticia.url_video!==''" class="my-5">
+          <!-- <div v-if="noticia.url_video!==''" class="my-5">
             <videotubeplayer :videoId="noticia.url_video" class="rounded-4 overflow-hidden" />
-          </div>
+          </div> -->
           <!-- ------------------------ -->
 
-          <div v-if="noticia.seoMetatag!==''"
-              v-html="noticia.seoMetatag" class="my-4 text-justify"></div>
+          <!-- <div v-if="noticia.seoMetatag!==''"
+              v-html="noticia.seoMetatag" class="my-4 text-justify"></div> -->
 
           <!-- ------------------------ -->
 
-          <div v-if="noticia.seoDescripcion!==''"
-              v-html="noticia.seoDescripcion" class="my-4 text-justify"></div>
+          <!-- <div v-if="noticia.seoDescripcion!==''"
+              v-html="noticia.seoDescripcion" class="my-4 text-justify"></div> -->
 
           <!-- ------------------------ -->
         </div>
@@ -80,16 +80,16 @@ export default {
     const idnoticia = Number(route.params.id);
     const titulonoticia = Number(route.params.titulo);
 
-    const { isloading, cargarDatosNoticia,noticia } = useNoticias();
+    const { isloading } = useNoticias();
 
     onMounted(async () => {
-     await cargarDatosNoticia(idnoticia);
+    //  await cargarDatosNoticia(idnoticia);
       
     });
 
     return {
      
-      isloading,idnoticia,titulonoticia,noticia,FormatFecha
+      isloading,idnoticia,titulonoticia,FormatFecha
      
     };
   },

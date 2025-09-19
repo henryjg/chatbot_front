@@ -27,12 +27,12 @@ export { default as DataTablePaginated } from './table/DataTablePaginated.vue';
 // export { default as cardProduct } from './card_oferta.vue'; // Alias para retrocompatibilidad
 export { default as CardNoticia } from './card_noticia.vue';
 export { default as CardMarca } from './card_marca.vue';
-export { default as CardPublicidad } from './card_publicidad.vue';  
-export { default as CardCantidadCupones } from './card_cantidadCupones.vue';
-export { default as cardPublicidad } from './card_publicidad.vue';
+// export { default as CardPublicidad } from './card_publicidad.vue';  
+// export { default as CardCantidadCupones } from './card_cantidadCupones.vue';
+// export { default as cardPublicidad } from './card_publicidad.vue';
 
 // Componentes de formularios y listas
-export { default as FormFotos } from './form_registrarFotos.vue';
+// export { default as FormFotos } from './form_registrarFotos.vue';
 // export { default as ListOferta } from './list_oferta.vue';
 // export { default as ListConvenios } from './listConvenios.vue';
 
