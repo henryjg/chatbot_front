@@ -23,7 +23,7 @@
       <DataTable
             :headers="headers"
             :items="listaServicios"
-            :filterKeys="['servicio', 'beneficios', 'precio', 'facilidades']"
+            :filterKeys="['servicio', 'beneficios', 'precio', 'facilidades', 'categoria']"
             :clasehead="'bg-info-100'"
           >
             <template #default="{ item, index, currentPage, itemsPerPage }">
@@ -32,7 +32,7 @@
                 <td class="text-wrap f-14 f-w-600 text-gray mb-0 mt-2 text-sm">
                     {{item.nombre}}
                 </td>
-                <!-- <td class="text-wrap text-sentence">{{ item.categoriaNombre }}</td> -->
+                <td class="text-wrap text-sentence">{{ item.categoria_nombre }}</td>
                 <!-- <td class="text-wrap text-sentence">{{ item.estado }}</td> -->
                 <td class="fw-bold text-center text-sm">
                     {{ item.beneficios }}
@@ -77,8 +77,9 @@ export default defineComponent({
 
     const headers = ref([
       { text: '#', width: '3%', key: '' }, 
-      { text: 'Servicio', width: '50%', key: 'servicio' },
-      { text: 'Beneficios', width: '5%', key: 'beneficios' },
+      { text: 'Servicio', width: '30%', key: 'servicio' },
+      { text: 'Categoría', width: '20%', key: 'categoria_nombre' },
+      { text: 'Beneficios', width: '20%', key: 'beneficios' },
       { text: 'Precio', width: '5%', key: 'precio' },
       { text: 'Facilidades', width: '10%', key: 'facilidades' },
       { text: 'Acciones', width: '15%', key: 'acciones'}

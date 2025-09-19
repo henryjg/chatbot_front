@@ -1,6 +1,7 @@
 export interface Servicios {
     id:number;
     categoria_id: number;
+    categoria_nombre: string;
     nombre: string;
     descripcion: string;
     beneficios: string;
@@ -17,6 +18,7 @@ export const initializeServicios = (): Servicios =>{
     return{
         id: 0,
         categoria_id: 0,
+        categoria_nombre: '',
         nombre: '',
         descripcion: '',
         beneficios: '',
