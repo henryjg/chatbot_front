@@ -37,6 +37,7 @@ export { usarCarritoStore } from '../stores/OfertaCarrito';
 export { useSubirArchivo } from './useSubirArchivo';
 export { Sunat } from './Sunat';
 export { useErrorHandler } from './Tools/useErrorHandler';
+export { useCitas } from './useCitas';
 // export { useFileUpload } from './use_ArchivosUpload';
 
 // Composables de validación

@@ -38,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
         props: true,
         meta: { requiresAuth: true },
       },
+       {
+        path: "citas_lista",
+        name: "ModuloCitas",
+        component: () => import("../views/administrador/citas_lista.vue"),
+        meta: { requiresAuth: true },
+      },
       // {
       //   path: "clientes_lista",
       //   name: "ClientesLista",
@@ -297,6 +303,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "cumple",
         name: "Cumple",
         component: () => import("../views/beneficios/cumpleanos_view.vue"),
+      },
+        {
+        path: "registro_citas",
+        name: "RegistroCitas",
+        component: () => import("../views/beneficios/formulario_cita.vue"),
       },
       // {
       //   path: "preguntasfrecuentes",

@@ -35,15 +35,15 @@
               <ErrorMessage :error="errors.nombre" />
             </div>
             <div class="col-md-4">
-              <label class="form-label">Apellido Paterno</label>
-              <input type="text" v-model="nuevoTrabajador.apePaterno" class="form-control" placeholder="Ingresa Apellido Paterno">
-              <ErrorMessage :error="errors.apePaterno" />
+              <label class="form-label">Apellidos</label>
+              <input type="text" v-model="nuevoTrabajador.apellidos" class="form-control" placeholder="Ingresa Apellidos">
+              <ErrorMessage :error="errors.apellidos" />
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <label class="form-label">Apellido Materno</label>
               <input type="text" v-model="nuevoTrabajador.apeMaterno" class="form-control" placeholder="Ingresa Apellido Materno">
               <ErrorMessage :error="errors.apeMaterno" />
-            </div>
+            </div> -->
           </div>
           <div class="mb-2">
             <label class="form-label">Género</label>
@@ -66,7 +66,7 @@
             <ErrorMessage :error="errors.cargo" />
           </div> -->
           <!-- --------------------------------------------------------------------------- -->
-
+<!-- 
           <div class="row mb-2">
             <div class="col-md-6">
               <label class="form-label">Cargo</label>
@@ -80,11 +80,10 @@
               <label class="form-label">Oficina</label>
               <select v-model="nuevoTrabajador.oficinaId" class="form-select">
                 <option>Elegir</option>
-                <!-- <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option> -->
-              </select>
+               </select>
               <ErrorMessage :error="errors.oficinaId" />
             </div>
-          </div>
+          </div> -->
           <!-- ------------------------------------------------- -->
 <!-- 
           <div class="mb-2">
@@ -105,11 +104,11 @@
               <input class="form-control" v-model="nuevoTrabajador.fechaNacimiento" type="date">
               <ErrorMessage :error="errors.fechaNacimiento" />
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <label class="form-label">Fecha de Contratación</label>
               <input class="form-control" v-model="nuevoTrabajador.fechaIngreso" type="date" >
               <ErrorMessage :error="errors.fechaIngreso" />
-            </div>
+            </div> -->
           </div>
               <div class="row mb-2">
             <div class="col-md-6">
@@ -154,7 +153,7 @@
                 />
             <ErrorMessage :error="errors.fotoPerfil" />
           </div>
-          <button :disable="isUploading" @click="" class="btn btn-primary mb-0">Guardar Trabajador</button>
+          <button :disabled="isUploading" @click="guardarTrabajador" class="btn btn-primary mb-0">Guardar Trabajador</button>
           <button @click="cancelar" class="btn btn-danger mx-2 mb-0">Cancelar</button>
 
         </div>
@@ -192,7 +191,7 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
     const isUploading = ref(false); // Deshabilitar el botón
-    const { nuevoTrabajador, errors,  isLoading_Trabajador } = useTrabajador();
+    const { nuevoTrabajador, errors,  isLoading_Trabajador, Crear_Trabajador } = useTrabajador();
     // const { listaOficinas, cargarOficinas } = useOficina();
 
     // Manejo de archivos (fotografía de perfil)
@@ -212,8 +211,7 @@ export default defineComponent({
           const respuesta = await Validar_DNI(nuevoTrabajador.value.dni);
           if(respuesta){
             nuevoTrabajador.value.nombre = respuesta.nombres;
-            nuevoTrabajador.value.apePaterno = respuesta.apellidoPaterno;
-            nuevoTrabajador.value.apeMaterno = respuesta.apellidoMaterno;
+            nuevoTrabajador.value.apellidos = respuesta.apellidoPaterno + ' ' + respuesta.apellidoMaterno;
           }
         }
       } catch (error) {
@@ -237,36 +235,23 @@ export default defineComponent({
       }
     };
 
-    // const guardarTrabajador = async () => {
-    //   try {
-    //     isUploading.value = true;
-    //     NProgress.start();
+    const guardarTrabajador = async () => {
+      try {
+        isUploading.value = true;
+        NProgress.start();
 
-    //     const dataToSend = {
-    //       ...nuevoTrabajador.value,
-    //       fechaNacimiento: nuevoTrabajador.value.fechaNacimiento
-    //         ? new Date(nuevoTrabajador.value.fechaNacimiento).toISOString()
-    //         : '',
-    //       fechaIngreso: nuevoTrabajador.value.fechaIngreso
-    //         ? new Date(nuevoTrabajador.value.fechaIngreso).toISOString()
-    //         : ''
-    //     };
-    //     // Primero crear el trabajador
-    //     const resultado = await Crear_Trabajador(dataToSend);
-    //     if (resultado && resultado.success) {
-    //       Alerta.Sucessfull('Éxito', 'Trabajador registrado correctamente');
-    //       router.push('/office/trabajador');
-    //     } else {
-    //       Alerta.Advertencia('Advertencia', resultado?.message || 'No se pudo guardar el trabajador.');
-    //     }
-    //   } catch (error: any) {
-    //     console.error('Error al guardar trabajador:', error);
-    //     Alerta.Advertencia('Advertencia', error?.message || 'No se pudo guardar el trabajador.');
-    //   } finally {
-    //     isUploading.value = false;
-    //     NProgress.done();
-    //   }
-    // };
+        // No necesitamos transformar las fechas aquí, el composable se encarga
+        const resultado = await Crear_Trabajador();
+        
+        // El composable ya maneja la redirección y las alertas
+      } catch (error: any) {
+        console.error('Error al guardar trabajador:', error);
+        Alerta.Error('Error', error?.message || 'No se pudo guardar el trabajador.');
+      } finally {
+        isUploading.value = false;
+        NProgress.done();
+      }
+    };
 
     // Reset trigger para fileuploader
     const resetTrigger = ref(0);
@@ -298,7 +283,7 @@ export default defineComponent({
       // registrar_FotoPerfil,
       errors,
       cargo,
-      // guardarTrabajador,
+      guardarTrabajador,
       resetTrigger,
       archivoTrabajador
     };

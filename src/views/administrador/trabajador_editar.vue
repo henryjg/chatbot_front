@@ -37,14 +37,14 @@
             </div>
             <div class="col-md-4">
               <label class="form-label">Apellido Paterno</label>
-              <input type="text" v-model="trabajador.apePaterno" class="form-control" placeholder="Ingresa Apellido Paterno">
-              <ErrorMessage :error="errors.apePaterno" />
+              <input type="text" v-model="trabajador.apellidos" class="form-control" placeholder="Ingresa Apellido Paterno">
+              <ErrorMessage :error="errors.apellidos" />
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <label class="form-label">Apellido Materno</label>
               <input type="text" v-model="trabajador.apeMaterno" class="form-control" placeholder="Ingresa Apellido Materno">
               <ErrorMessage :error="errors.apeMaterno" />
-            </div>
+            </div> -->
           </div>
           <!-- Género con botones -->
           <div class="mb-2">
@@ -225,8 +225,7 @@ export default defineComponent({
           if(Respuesta){
             personaData.value = Respuesta;
             trabajador.value.nombre = personaData.value.nombres;
-            trabajador.value.apePaterno = personaData.value.apellidoPaterno;
-            trabajador.value.apeMaterno = personaData.value.apellidoMaterno;
+            trabajador.value.apellidos = personaData.value.apellidoPaterno + ' ' + personaData.value.apellidoMaterno;
         }
       }
       } catch (error) {

@@ -6,9 +6,8 @@ import { Trabajador, initializeTrabajador, initializeTrabajadorErrors, CrearTrab
 import { useValidaTrabajador } from './Validaciones/useValidaTrabajador';
 // import { useFamiliars } from "./useFamiliar";
 import { useOperacion } from './Tools/useOperacion';
+import { useSubirArchivo } from './useSubirArchivo';
 // import { useFileUpload } from './use_ArchivosUpload';
-import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
 
 export function useTrabajador() {
   // Datos reactivos
@@ -18,7 +17,19 @@ export function useTrabajador() {
   const ListaTrabajadores = ref<Trabajador[]>([]);
   const nuevoTrabajador = ref<CrearTrabajador>(initializeCrearTrabajador());
   const trabajador = ref<Trabajador>(initializeTrabajador());
-  const isLoading_Trabajador = ref(false);  const { ejecutar } = useOperacion();
+  const isLoading_Trabajador = ref(false);  
+  const { ejecutar } = useOperacion();
+  
+  // Composable para subir foto de perfil
+  const { 
+    ArchivoTemporal: fotoTemporal, 
+    fileDocumento: file_img, 
+    isUploading, 
+    onFileSelected: onFileSelected_FotoPerfil, 
+    subirArchivo: subirFotoPerfil,
+    reset_formUpload: resetFotoUpload
+  } = useSubirArchivo('loader-foto-trabajador', 'fotografia');
+  
   // const { subirImagen, createProfilePhotoInstance } = useFileUpload();
   // const { Listar_Familiares, Listar_Familiar_Trabajador } = useFamiliars();
   const { errors, validarFormulario } = useValidaTrabajador();
@@ -35,6 +46,7 @@ export function useTrabajador() {
   const ResetFormularioTrabajador = () => {
     trabajador.value = initializeTrabajador();
     errors.value = initializeTrabajadorErrors();
+    resetFotoUpload();
   };
 
   // Cargar lista de trabajadores
@@ -112,37 +124,62 @@ export function useTrabajador() {
   };
 
   // Registrar un nuevo trabajador
-  // const Crear_Trabajador = async (dataOverride?: CrearTrabajador) => {
-  //   const data = dataOverride || nuevoTrabajador.value;
+  const Crear_Trabajador = async (dataOverride?: CrearTrabajador) => {
+    const data = dataOverride || nuevoTrabajador.value;
 
-  //   if (!validarFormulario(data)) return false;
+    const validacionExitosa = validarFormulario(data);
+    
+    if (!validacionExitosa) {
+      return false;
+    }
 
-  //   return ejecutar(
-  //     async () => {
-  //       if (file_img.value) {
-  //         await subirFotoPerfil();
-  //       }
-  //       const response = await TrabajadorService.crear(data);
-  //       return response;
-  //     },
-  //     {
-  //       indicadorCarga: isLoading_Trabajador,
-  //       mensajeExito: "Trabajador registrado con éxito",
-  //       mostrarErrores: true,
-  //       onExito: async (response) => {
-  //         if (response.success) {
-  //           TrabajadorService.EnviarCorreoBienvenida(response.data)
-  //           ResetFormularioTrabajador();
-  //           router.push("/office/trabajador");
-  //         } else {
-  //           throw new Error(
-  //             response.message || "Error al registrar trabajador"
-  //           );
-  //         }
-  //       },
-  //     }
-  //   );
-  // };
+    return ejecutar(
+      async () => {
+        // Crear FormData para enviar los datos
+        const formData = new FormData();
+        
+        // Agregar todos los campos del trabajador al FormData
+        Object.entries(data).forEach(([key, value]) => {
+          if (value !== null && value !== undefined && value !== '') {
+            // Manejar fechas especialmente
+            if (key === 'fechaNacimiento' || key === 'fechaIngreso') {
+              if (value) {
+                // Si es una fecha, convertirla al formato correcto
+                const fechaFormateada = value instanceof Date ? value.toISOString().split('T')[0] : value;
+                formData.append(key, fechaFormateada);
+              }
+            } else {
+              formData.append(key, value.toString());
+            }
+          }
+        });
+
+        // Si hay una foto seleccionada, agregarla al FormData
+        if (file_img.value) {
+          formData.append('archivo_foto', file_img.value);
+        }
+
+        const response = await TrabajadorService.crear(formData);
+        return response;
+      },
+      {
+        indicadorCarga: isLoading_Trabajador,
+        mensajeExito: "Trabajador registrado con éxito",
+        mostrarErrores: true,
+        onExito: async (response) => {
+          if (response.success) {
+            // TrabajadorService.EnviarCorreoBienvenida(response.data)
+            ResetFormularioTrabajador();
+            router.push("/office/trabajador");
+          } else {
+            throw new Error(
+              response.message || "Error al registrar trabajador"
+            );
+          }
+        },
+      }
+    );
+  };
 
   // Actualizar un trabajador existente
   // const Actualizar_Trabajador = async (
@@ -360,13 +397,17 @@ export function useTrabajador() {
     Listar_Trabajadores,
     Obtener_Trabajador,
     // Listar_Trabajadores_Oficina,
-    // Crear_Trabajador,
+    Crear_Trabajador,
     // Actualizar_Trabajador,
     // Eliminar_Trabajador,
     // actualizarFotoTrabajador,
     // actualizarEstadoTrabajador,
     // registrar_FotoPerfil,
-    // onFileSelected_FotoPerfil,
+    onFileSelected_FotoPerfil,
+    file_img,
+    fotoTemporal,
+    isUploading,
+    subirFotoPerfil,
     isLoading_Trabajador,
     ResetFormularioTrabajador,
     // ExportarExcelTrabajador,

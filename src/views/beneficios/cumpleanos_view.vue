@@ -26,9 +26,9 @@
                                     <div v-if="cumpleanerosHoy.length > 0">
                                         <div v-for="trabajador in cumpleanerosHoy" :key="trabajador.id" class="d-flex align-items-center mb-3">
                                             <div class="rounded-circle d-flex align-items-center justify-content-center me-3 bg-primary text-white fw-bold" style="width:44px;height:44px;">
-                                                {{ iniciales(trabajador.nombre, trabajador.apePaterno) }}
+                                                {{ iniciales(trabajador.nombre, trabajador.apellidos) }}
                                             </div>
-                                            <span class="fw-semibold">{{ trabajador.nombre }} {{ trabajador.apePaterno }}</span>
+                                            <!-- <span class="fw-semibold">{{ trabajador.nombre }} {{ trabajador.apePaterno }}</span> -->
                                         </div>
                                     </div>
                                     <div v-else class="text-secondary">Nadie cumple hoy</div>

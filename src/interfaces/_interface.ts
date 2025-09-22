@@ -2,11 +2,11 @@
 export * from './negocio.interface';
 export * from './oferta.interface';
 export * from './categoria.interface';
-export * from './convenio.interface';
-export * from './cupon.interface';
+// export * from './convenio.interface';
+// export * from './cupon.interface';
 export * from './sede.interface';
 export * from './cliente.interface';
-export * from './familiar.interface';
+// export * from './familiar.interface';
 export * from './trabajador.interface';
 export * from './oficina.interface';
 export * from './usuario.interface';
@@ -16,7 +16,7 @@ export * from './servicios.interface';
 export * from './slider.interface';
 export * from './slider.interface';
 export * from './sunat.interface';
-export * from './cupon.interface';
+// export * from './cupon.interface';
 export * from './ubigeo.interface';
 export * from './api.response.interface';
 export * from './archivo.interface';
@@ -25,6 +25,7 @@ export * from './pagina.interface';
 export * from './noticiasCategoria.interface';
 export * from './preguntas.interface';
 export * from './EvoltaInterfaces';
+export * from './citas.interface';
 // Interfaces de estadísticas
 export * from './estadisticas.interface';
 

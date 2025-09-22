@@ -143,6 +143,20 @@ export const menuItems: MenuItem[] = [
     route: '/office/pagina',
     role_ids: ['Administrador']  // Solo visible para Administrador
   },
+   {
+    tipe: 'link',
+    text: 'Trabajador',
+    icon: 'fas fa-file',
+    route: '/office/trabajador',
+    role_ids: ['Administrador']  // Solo visible para Administrador
+  },
+   {
+    tipe: 'link',
+    text: 'Citas Médicas',
+    icon: 'fas fa-file',
+    route: '/office/citas_lista',
+    role_ids: ['Administrador']  // Solo visible para Administrador
+  },
   // {
   //   tipe: 'link',
   //   text: 'Proyectos IMP',

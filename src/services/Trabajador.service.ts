@@ -9,6 +9,18 @@ const TrabajadorService = {
   /**
    * Crea un nuevo trabajador
    */
+
+    async crear(formData: FormData) {
+       formData.append("op", "add_trabajador");
+       
+      const response = await axios.post(API_URL, formData, {
+          headers: {
+          'Content-Type': 'multipart/form-data'
+          }
+      });
+      
+      return response.data;
+    },
   // async crear(trabajador: CrearTrabajador) {
   //   try {
   //     // Enviar el objeto directamente, sin envolverlo en { requestTrabajador: ... }

@@ -74,12 +74,12 @@
                 <i v-else class="ph-duotone ph-moon text-info "></i>
               </a>
             </li>
-            <!-- <li class="nav-item" v-if="!isLoggedIn">
-              <router-link  to="/beneficios/loggin" class="nav-link text-white f-18 ">
+            <li class="nav-item">
+              <router-link  to="/beneficios/loggin_admin" class="nav-link text-white f-18 ">
                 <i class="ph-duotone ph-user"></i>
               </router-link>
             </li>
-            <li class="nav-item" v-else>
+            <!-- <li class="nav-item" v-else>
               <router-link  
                  v-if="Usuario.idrol === 1 || Usuario.idrol === 2"
                 to="/beneficios/cuenta/misdatos" class="nav-link text-white f-18 ">

@@ -2,8 +2,8 @@ export interface Trabajador {
     id: number;
     dni: string;
     nombre: string;
-    apePaterno: string;
-    apeMaterno: string;
+    apellidos: string;
+    // apeMaterno: string;
     email: string;
     celular: string;
     fotoPerfil: string;
@@ -30,8 +30,8 @@ export interface Trabajador {
       id: 0,
       dni: '',
       nombre: '',
-      apePaterno: '',
-      apeMaterno: '',
+      apellidos: '',
+      // apeMaterno: '',
       email: '',
       celular: '',
       fotoPerfil: '',
@@ -58,8 +58,8 @@ export interface TrabajadorErrors {
   id: string;
   dni: string;
   nombre: string;
-  apePaterno: string;
-  apeMaterno: string;
+  apellidos: string;
+  // apeMaterno: string;
   email: string;
   celular: string;
   fotoPerfil: string;
@@ -86,8 +86,8 @@ export const initializeTrabajadorErrors = (): TrabajadorErrors => {
     id: '',
     dni: '',
     nombre: '',
-    apePaterno: '',
-    apeMaterno: '',
+    apellidos: '',
+    // apeMaterno: '',
     email: '',
     celular: '',
     fotoPerfil: '',
@@ -113,8 +113,8 @@ export const initializeTrabajadorErrors = (): TrabajadorErrors => {
 export interface CrearTrabajador {
   dni: string;
   nombre: string;
-  apePaterno: string;
-  apeMaterno: string;
+  apellidos: string;
+  // apeMaterno: string;
   email: string;
   celular: string;
   fechaNacimiento: string;
@@ -129,8 +129,8 @@ export interface CrearTrabajador {
 export const initializeCrearTrabajador = (): CrearTrabajador => ({
   dni: '',
   nombre: '',
-  apePaterno: '',
-  apeMaterno: '',
+  apellidos: '',
+  // apeMaterno: '',
   email: '',
   celular: '',
   fechaNacimiento: '',
