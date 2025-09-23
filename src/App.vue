@@ -6,11 +6,9 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 // ---------------------------------------------
-import { usarAuthStore } from './stores/authStore';
 // import { useTokenRefresh } from './composables/useTokenRefresh';
 import { onMounted } from 'vue';
 
-const authStore = usarAuthStore();
 // const tokenRefresh = useTokenRefresh();
 
 onMounted(() => {

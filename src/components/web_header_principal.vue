@@ -14,8 +14,8 @@
       <div class="container">
         <a class="pc-navbar-brand " href="#">
           <div class=" text-white f-w-200 f-24">
-            <img v-if="!isModeDark" src="../assets/imp-logo.png" alt="logo" class="logo-lg " height="40px">
-            <img v-if="isModeDark" src="../assets/imp-logo-white-238x63.png" alt="logo" class="logo-lg " height="40px">
+            <img v-if="!isModeDark" src="../assets/logo_web.png" alt="logo" class="logo-lg " height="40px">
+            <img v-if="isModeDark" src="../assets/logo_web.png" alt="logo" class="logo-lg " height="40px">
           </div>
         </a>
         <div class="navbar-toggler rounded btn bg-opacity-10 bg-info" type="button" data-bs-toggle="offcanvas"
@@ -31,29 +31,7 @@
                 <i class="fa fa-home f-18  p-r-5 align-content-center mb-1"></i> Inicio
               </router-link>
             </li>
-            <li class="nav-item f-16  px-1">
-              <router-link  to="/beneficios/" class="nav-link d-flex ">
-                <i class="fa fa-caret-right p-r-5 align-content-center"></i> Portal Beneficios
-              </router-link>
-            </li>
-
-            <li class="nav-item f-16  px-1">
-              <router-link  to="/portal/pagosenlinea" class="nav-link d-flex">
-                <i class="fa fa-caret-right p-r-5 align-content-center"></i>Pagos en Linea
-              </router-link>
-            </li>
-
-            <li class="nav-item f-16  px-1">
-              <router-link  to="/portal/tramites" class="nav-link d-flex">
-                <i class="fa fa-caret-right p-r-5 align-content-center"></i>Trámites
-              </router-link>
-            </li>
-
-            <li class="nav-item f-16  px-1">
-              <router-link  to="/beneficios/novedades" class="nav-link  d-flex">
-                <i class="fa fa-caret-right p-r-5 align-content-center"></i>Novedades
-              </router-link>
-            </li>
+          
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 align-items-start">
             <!-- <li v-if="isLoggedIn" class="nav-item align-content-center m-auto text-primary">
@@ -66,23 +44,7 @@
                 <i v-else class="ph-duotone ph-moon text-info "></i>
               </a>
             </li>
-            <!-- <li class="nav-item" v-if="!isLoggedIn">
-              <router-link  to="/beneficios/loggin" class="nav-link f-18 ">
-                <i class="ph-duotone ph-user"></i>
-              </router-link>
-            </li>
-            <li class="nav-item" v-else>
-              <router-link  
-                 v-if="Usuario.idrol === 1 || Usuario.idrol === 2"
-                to="/beneficios/cuenta/misdatos" class="nav-link f-18 ">
-                <i class="ph-duotone ph-user"></i>
-              </router-link>
-              <router-link  
-                v-else
-                to="/office" class="nav-link f-18 ">
-                <i class="ph-duotone ph-user"></i>
-              </router-link>
-            </li> -->
+        
 
             
           </ul>
@@ -130,35 +92,6 @@
           </div>
         </router-link>
       </li>
-      <li class="nav-item f-16">
-        <router-link  to="/beneficios/" class="nav-link d-flex " >
-          <div data-bs-dismiss="offcanvas">
-            <i class="fa fa-caret-right p-r-5 align-content-center"></i>Beneficios
-          </div>
-        </router-link>
-      </li>
-
-      <li class="nav-item f-16">
-        <router-link  to="/portal/pagosenlinea" class="nav-link d-flex">
-          <div data-bs-dismiss="offcanvas">
-            <i class="fa fa-caret-right p-r-5 align-content-center"></i>Mis Pagos en Linea
-          </div>
-        </router-link>
-      </li>
-
-      <li class="nav-item f-16">
-        <router-link  to="/portal/tramites" class="nav-link d-flex">
-          <div data-bs-dismiss="offcanvas">
-            <i class="fa fa-caret-right p-r-5 align-content-center"></i>Mis Trámites
-          </div>
-        </router-link>
-      </li>
-
-
-      <!-- ---------------- -->
-              
-     
-              
     </ul>
     
   </div>

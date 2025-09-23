@@ -4,23 +4,12 @@
   
   import Webfooter from '../components/web_footer.vue';
   import Webheader from '../components/web_header_principal.vue';
-  import { usePaginaStore } from '../stores/paginaStore';
 
   export default {
     components: {
       Webfooter, Webheader, 
     },
-    setup() {
-      const route = useRoute();
-      const pagStore = usePaginaStore();
-
-      onMounted(() => {
-        pagStore.almacenaPagina();
-      });
-
-      return {
-      };
-    }
+  
   };
 </script>
 

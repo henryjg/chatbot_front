@@ -2,15 +2,14 @@
   <div class="row bg-blue-800" style="min-height: calc(100vh - 124px)">
     <div class="col-md-8 d-none d-sm-block">
       <div class="overflow-hidden d-flex align-items-center justify-content-center custom-div">
-        <img src="/src/assets/images/bgcliente.avif" class="img-centered">
+        <img src="/src/assets/chatbot2.jpg" class="img-centered">
       </div>
     </div>
     <div class="col-md-4 justify-content-center align-content-center">
       <div class="p-5">
         <div class="text-center">
             <h3 class="f-w-500 mb-1 text-info">Iniciar Sesión Administrador</h3>
-            <h5 class="f-w-500 mb-0 pt-2 text-gray-300">¡Bienvenido a nuestra plataforma de beneficios!</h5>
-            <p class="text-white py-3 f-w-300">Descubre todos los lugares donde puedes disfrutar de promociones, compras, eventos, experiencias y mucho más.</p>
+            <h5 class="f-w-500 mb-0 pt-2 text-gray-300 pb-5">¡Bienvenido a nuestra AppChatBoot!</h5>
         </div>
 
     <div class="mb-3">

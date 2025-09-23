@@ -3,18 +3,10 @@
     <div>
       <div class="bg-blue-900 py-2 position-relative">
         <div class="text-center">
-          <p class="mb-1 pt-2">
-            <RouterLink to="/beneficios/terminosycondiciones" class="hover:underline">Términos y Condiciones</RouterLink> |
-            <RouterLink to="/beneficios/politicasyprivacidad" class="hover:underline">Políticas de Privacidad</RouterLink> |
-             <RouterLink to="/beneficios/loggin_admin" class="hover:underline">Login Gestión</RouterLink>
-          </p>
+
           <p class="text-sm text-info">© Todos los derechos reservados.</p>
         </div>
         <div class="footer-preguntas-link position-absolute end-0 top-50 translate-middle-y pe-4">
-          <RouterLink to="/beneficios/preguntasfrecuentes" class="footer-link d-flex align-items-center">
-            <i class="fa fa-question-circle me-2"></i>
-            Preguntas frecuentes
-          </RouterLink>
         </div>
       </div>
     </div>
@@ -25,38 +17,13 @@
 
 <script lang="ts">
 import { ref, onMounted } from 'vue';
-import { usePaginaStore } from '../stores/paginaStore';
-import type { Pagina } from '../interfaces/_interface';
-import { usePagina } from '../composables/usePagina';
 
 export default {
 setup() {
-  const pagStore = usePaginaStore();
-  const DatosPagina = ref<Pagina | null>(null);
-  const { EstaEmpresa, Listar_Pagina } = usePagina();
-  const telefonocontacto = ref('');
-  const linkfacebook = ref('');
-  const linkinstagram = ref('');
-  const celularcontacto = ref('');
+
   
 
 
-  onMounted(async() => {
-    DatosPagina.value = pagStore.pagina;
-    await Listar_Pagina();
-    telefonocontacto.value = EstaEmpresa.value.telefonocontacto;
-    linkfacebook.value = EstaEmpresa.value.linkfacebook;
-    linkinstagram.value = EstaEmpresa.value.linkinstagram;
-    celularcontacto.value = EstaEmpresa.value.celularcontacto;
-  });
-
-  return {
-    DatosPagina,
-    telefonocontacto,
-    celularcontacto,
-    linkfacebook,
-    linkinstagram
-  };
 }
 };
 </script>
