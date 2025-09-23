@@ -39,9 +39,9 @@
             <td class="text-wrap f-w-600 text-sm">
               {{ item.nombre }} {{ item.apellidos }}
             </td>
-            <td class="text-center text-sm">
+            <!-- <td class="text-center text-sm">
               <i :class="item.genero === 'Masculino' ? 'fas fa-male text-primary' : 'fas fa-female text-pink-600'" style="font-size: 1.5em;"></i>
-            </td>
+            </td> -->
             <!-- <td class="text-wrap text-sm">{{  FormatFecha.fecha_dd_mm_yyyy(item.fechaNacimiento) }}</td> -->
             <td class="text-wrap text-sm">{{ item.dni }}</td>
             <!-- <td class="text-wrap text-sm">{{ getOficinaNombre(item.oficinaId) }}</td> -->
@@ -51,20 +51,8 @@
                 <i class="fab fa-whatsapp text-success" style="font-size: 1.5em;"></i>
               </a>
             </td>
-            <td class="text-wrap text-sm">
-              <div class="form-check form-switch custom-switch-v1 mb-1">
-                <!-- <input type="checkbox"  
-                       class="form-check-input input-success" 
-                       :id="`customswitch-${item.id}`" 
-                       :checked="item.estado" 
-                       :disabled="loadingStates[item.id]"
-                       @change="cambiarEstado(item, ($event.target as HTMLInputElement)?.checked)" /> -->
-                  <div v-if="loadingStates[item.id]" class="d-flex align-items-center me-2 position-absolute">
-                    <span class="spinner-border spinner-border-sm text-info me-2 " role="status" aria-hidden="true"></span>
-                  </div>
-              </div>
-            </td>
-            <!-- <td class="text-wrap text-sm">{{ item.nroingresos }}</td> -->
+    
+            <td class="text-wrap text-sm">{{ item.correo }}</td>
             <!-- <td class="text-wrap text-sm">{{  FormatFecha.fecha_dd_mm_yyyy(item.lastconexion) }}</td>
             <td class="text-wrap text-sm">{{ item.nrocupones }}</td> -->
             <td class="text-sm">
@@ -73,7 +61,7 @@
               </router-link>
               <button 
                 type="button"
-                @click="eliminarTrabajador(item.id)"
+                @click="Eliminar_Trabajador(item.id)"
                 class="avtar avtar-xs btn btn-danger"
                 :disabled="item.nrocupones > 0"
                 :title="item.nrocupones > 0 ? 'No se puede eliminar: tiene cupones asociados.' : 'Eliminar trabajador'"
@@ -110,7 +98,7 @@ export default {
   },
   setup() {
     // Composable y estados
-  const { ListaTrabajadores,  isLoading_Trabajador, Listar_Trabajadores } = useTrabajador();
+  const { ListaTrabajadores,  isLoading_Trabajador, Listar_Trabajadores, Eliminar_Trabajador } = useTrabajador();
     // const { cargarOficinas, listaOficinas } = useOficina();
     const loadingStates = ref<{ [key: number]: boolean }>({});
 
@@ -126,11 +114,11 @@ export default {
       { text: '#', width: '5%', key: 'index' },
       // { text: '', width: '3%', key: 'foto' },
       { text: 'Nombres', width: '40%', key: 'nombre' },
-      { text: 'Sexo', width: '20%', key: 'genero' },
+      // { text: 'Sexo', width: '20%', key: 'genero' },
       // { text: 'Cumpleaños', width: '10%', key: 'fechaNacimiento' },
       { text: 'DNI', width: '20%', key: 'dni' },
       { text: 'Celular', width: '20%', key: 'celular' },
-      // { text: 'Estado', width: '7%', key: 'estado' },
+      { text: 'Correo', width: '20%', key: 'correo' },
       { text: 'Acciones', width: '10%', key: 'acciones' },
     ]);
     // Función resetear para limpiar búsqueda y recargar paginación
@@ -139,62 +127,6 @@ export default {
       paginaActual.value = 1;
       // cargarTrabajadoresPaginados();
     };
-
-    // Obtener nombre de oficina
-    // const getOficinaNombre = (oficinaId: string) => {
-    //   const oficina = listaOficinas.value.find((of: any) => String(of.id) === String(oficinaId));
-    //   return oficina ? oficina.nombre : 'Ninguna';
-    // };
-
-    // Cargar trabajadores paginados
-    // const cargarTrabajadoresPaginados = async () => {
-    //   await Listar_Trabajadores_Paginados(
-    //     paginaActual.value,
-    //     registrosPorPagina.value,
-    //     busqueda.value
-    //   ).then((response: any) => {
-    //     ListaTrabajadoresPaginated.value = response?.data?.data || [];
-    //     const pag = response?.data?.pagination;
-    //     paginacionInfo.value = {
-    //       pagina_actual: pag.currentPage,
-    //       registros_por_pagina: pag.pageSize,
-    //       total_registros: pag.totalItems,
-    //       total_paginas: pag.totalPages,
-    //       pagina_anterior: pag.hasPreviousPage ? pag.currentPage - 1 : null,
-    //       pagina_siguiente: pag.hasNextPage ? pag.currentPage + 1 : null,
-    //       paginas_visibles: [],
-    //       desde: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[0]) : 0,
-    //       hasta: pag.itemsRange ? parseInt(pag.itemsRange.split('-')[1]) : 0
-    //     };
-    //   });
-    // };
-
-    // Nueva función para cambiar estado y refrescar la lista paginada
-    // const cambiarEstado = async (trabajador: Trabajador, nuevoEstado: boolean) => {
-    //   await cambiarEstadoOriginal(trabajador, nuevoEstado);
-    //   await cargarTrabajadoresPaginados();
-    // };
-
-    // Eventos de paginación y búsqueda
-    // const handleSearch = (args: { term: string; field: string }) => {
-    //   busqueda.value = args.term;
-    //   paginaActual.value = 1;
-    //   cargarTrabajadoresPaginados();
-    // };
-    // const handlePageChange = (page: number) => {
-    //   paginaActual.value = page;
-    //   cargarTrabajadoresPaginados();
-    // };
-    // const handlePerPageChange = (perPage: number) => {
-    //   registrosPorPagina.value = perPage;
-    //   paginaActual.value = 1;
-    //   cargarTrabajadoresPaginados();
-    // };
-    // const handleClearSearch = () => {
-    //   busqueda.value = '';
-    //   paginaActual.value = 1;
-    //   cargarTrabajadoresPaginados();
-    // };
 
     // Computed para cards resumen
     const totalTrabajadoresActivos = computed(() =>
@@ -207,12 +139,6 @@ export default {
         [false, 'Inactivo', 0].includes(t.estado)
       ).length
     );
-
-    // Función placeholder para eliminar trabajador
-    const eliminarTrabajador = (id: number) => {
-      console.log('Función eliminar trabajador no implementada para ID:', id);
-      // TODO: Implementar funcionalidad de eliminación
-    };
 
 
     // Inicializar
@@ -248,7 +174,7 @@ export default {
       totalTrabajadoresInactivos,
       resetear,
       ListaTrabajadores,
-      eliminarTrabajador
+      Eliminar_Trabajador
     };
   }
 };

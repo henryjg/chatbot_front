@@ -129,13 +129,13 @@ export const menuItems: MenuItem[] = [
   //   route: '/office/categoria',
   //   role_ids: [1, 4]  // Solo visible para Administrador
   // },
-    {
-    tipe: 'link',
-    text: 'Paginas',
-    icon: 'fas fa-solid fa-window-maximize',
-    route: '/office/editarcampos',
-    role_ids: ['Administrador'] // Visible para Administrador y Licencias
-  },
+  //   {
+  //   tipe: 'link',
+  //   text: 'Paginas',
+  //   icon: 'fas fa-solid fa-window-maximize',
+  //   route: '/office/editarcampos',
+  //   role_ids: ['Administrador'] // Visible para Administrador y Licencias
+  // },
   {
     tipe: 'link',
     text: 'Entradas',

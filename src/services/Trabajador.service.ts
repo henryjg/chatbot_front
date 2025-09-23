@@ -97,6 +97,14 @@ const TrabajadorService = {
     });
        return response.data;
   },
+
+  async eliminar(id: number) {
+        const response = await axios.post(API_URL, {
+        op: 'deleteTrabajador',
+        id: id
+    });
+       return response.data;
+  },
   
 
   /**

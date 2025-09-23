@@ -198,26 +198,26 @@ export function useTrabajador() {
   // };
 
   // Eliminar un trabajador
-  // const Eliminar_Trabajador = async (id: number) => {
-  //   const isConfirmado = await Alerta.Confirmacion(
-  //     "¿Estás seguro de que deseas eliminar este trabajador?",
-  //     "Esta acción no se puede deshacer."
-  //   );
+  const Eliminar_Trabajador = async (id: number) => {
+    const isConfirmado = await Alerta.Confirmacion(
+      "¿Estás seguro de que deseas eliminar este trabajador?",
+      "Esta acción no se puede deshacer."
+    );
 
-  //   if (!isConfirmado) return;
+    if (!isConfirmado) return;
 
-  //   return ejecutar(() => TrabajadorService.eliminar(id), {
-  //     mensajeExito: "Trabajador eliminado con éxito",
-  //     mostrarErrores: true,
-  //     onExito: (response) => {
-  //       if (response.success) {
-  //         Listar_Trabajadores();
-  //       } else {
-  //         throw new Error(response.message || "Error al eliminar trabajador");
-  //       }
-  //     },
-  //   });
-  // };
+    return ejecutar(() => TrabajadorService.eliminar(id), {
+      mensajeExito: "Trabajador eliminado con éxito",
+      mostrarErrores: true,
+      onExito: (response) => {
+        if (response.success) {
+          Listar_Trabajadores();
+        } else {
+          throw new Error(response.message || "Error al eliminar trabajador");
+        }
+      },
+    });
+  };
 
   // Eliminar un trabajador
   // const Eliminar_Trabajador_Fila = async (
@@ -410,6 +410,7 @@ export function useTrabajador() {
     subirFotoPerfil,
     isLoading_Trabajador,
     ResetFormularioTrabajador,
+    Eliminar_Trabajador,
     // ExportarExcelTrabajador,
     // Eliminar_Trabajador_Fila,
     // Listar_Trabajadores_Paginados,
