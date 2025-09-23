@@ -10,8 +10,8 @@
           </div>
           <div class="card-body text-center">
             <img
-              v-if="logoUrl"
-              :src="logoUrl"
+              v-if="EstaEmpresa.logo"
+              :src="EstaEmpresa.logo"
               class="img-fluid rounded-3 mb-2"
               style="max-height: 120px;"
               alt="Logo"
@@ -23,7 +23,7 @@
               style="max-height: 120px;"
               alt="Logo"
             />
-            <div class="text-muted small mb-2">Esta es la imagen del logotipo de la publicidad.</div>
+            <div class="text-muted small mb-2">Esta es la imagen del logotipo de la empresa.</div>
             <button class="btn btn-outline-primary btn-sm" @click="openLogoModal">
               <i class="fa fa-upload"></i> Cambiar Logo
             </button>
@@ -38,8 +38,8 @@
           </div>
           <div class="card-body text-center">
             <img
-              v-if="portadaUrl"
-              :src="portadaUrl"
+              v-if="EstaEmpresa.portada"
+              :src="EstaEmpresa.portada"
               class="img-fluid rounded-3 mb-2"
               style="max-height: 120px;"
               alt="Portada"
@@ -51,7 +51,7 @@
               style="max-height: 120px;"
               alt="Portada"
             />
-            <div class="text-muted small mb-2">Esta es la imagen de portada principal de la publicidad.</div>
+            <div class="text-muted small mb-2">Esta es la imagen de portada principal de la empresa.</div>
             <button class="btn btn-outline-primary btn-sm" @click="openPortadaModal">
               <i class="fa fa-upload"></i> Cambiar Portada
             </button>
@@ -61,23 +61,9 @@
     </div>
     <!-- Fin bloques de subida -->
     <Divloading v-if="isloading"/>
-    <!-- <Transition>
-      <div class="row g-1" v-if="!isloading">
-        <div class="col-3" v-for="(item, index) in listaPublicidad" :key="item.id" >
-            <div class="text-center">
-                <button @click="openEditModal(item.id)" class="btn btn-light-warning btn-sm me-1">
-                  <i class="ti ti-pencil"></i>
-                </button>                    <button @click="Eliminar_publicidad(item.id)" class="btn btn-light-danger btn-sm">
-                  <i class="ti ti-trash"></i>
-                </button>
-            </div>
-            <CardPublicidad :item="item"></CardPublicidad>
-        </div>
-      </div>
-    </Transition> -->
   </div>
  <!-- MODAL - Logo -->
-  <!-- <div class="modal fade" id="modal_logo" tabindex="-1" aria-labelledby="modal_logoLabel"
+  <div class="modal fade" id="modal_logo" tabindex="-1" aria-labelledby="modal_logoLabel"
        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -90,10 +76,10 @@
         <div class="modal-body py-1">
           <div class="mb-3">
             <FileUploader 
-                titulo="Logo de la Publicidad"
-                elementoLoader="loadingfile"
+                titulo="Logo de la Empresa"
+                elementoLoader="loadingfile_logo"
                 tipoArchivo="fotografia"
-                :archivoTemporal="archivoTemporalLogo"
+                :archivoTemporal="archivoLogo.ArchivoTemporal.value"
                 :resetTrigger="resetTrigger"
                 @archivoSubido="onLogoUploaded"
                 @uploadingStatus="isUploading = $event"
@@ -110,10 +96,10 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <!-- MODAL - Portada -->
-  <!-- <div class="modal fade" id="modal_portada" tabindex="-1" aria-labelledby="modal_portadaLabel"
+  <div class="modal fade" id="modal_portada" tabindex="-1" aria-labelledby="modal_portadaLabel"
        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -126,10 +112,10 @@
         <div class="modal-body py-1">
           <div class="mb-3">
             <FileUploader 
-                titulo="Imágen de Portada"
-                elementoLoader="loadingfile"
+                titulo="Imagen de Portada"
+                elementoLoader="loadingfile_portada"
                 tipoArchivo="fotografia"
-                :archivoTemporal="archivoTemporalPortada"
+                :archivoTemporal="archivoPortada.ArchivoTemporal.value"
                 :resetTrigger="resetTrigger"
                 @archivoSubido="onPortadaUploaded"
                 @uploadingStatus="isUploading = $event"
@@ -146,7 +132,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   </template>
 
 <script lang="ts">
@@ -154,29 +140,38 @@
 import { FileUploader } from '../../components/_components';
 import { ref, onMounted, defineComponent } from 'vue';
 import { Modal } from 'bootstrap';
-
+import { Adjunto } from '../../interfaces/archivo.interface';
+import { useSubirArchivo } from "../../composables/useSubirArchivo";
+import { usePagina } from '../../composables/usePagina';
 // Centralized imports
 import { CardLayout, DataTable, Divloading, ImgLazy } from '../../components/_components';
-// import { usePublicidad } from '../../composables/_composables';
-
-// Modal imports (these are specific modal components)
-// import modal_add_publicidad from '../../views/Modals/modal_add_publicidad.vue';
-// import modal_editar_publicidad from '../../views/Modals/modal_edit_publicidad.vue';
 
 export default defineComponent({
   components: {
     CardLayout,
     DataTable,
-    // modal_add_publicidad,
-    // modal_editar_publicidad,
     Divloading,
     ImgLazy,
-    // CardPublicidad,
     FileUploader
   },  setup() {
-    // const { listaPublicidad, Listar_Publicidad, Eliminar_publicidad } = usePublicidad();
+
     const selectedPublicidadId = ref<number | null>(null);
     const isloading = ref(false);
+    
+    // Agregar el composable usePagina
+    const { EstaEmpresa, Listar_Pagina, updateCampo } = usePagina();
+
+    const archivoPortada = useSubirArchivo(
+        "loadingfile_portada",
+        "fotografia",
+      );
+
+    const archivoLogo = useSubirArchivo(
+        "loadingfile_logo",
+        "fotografia",
+      );
+
+      
     // Manejo de modales
     const openAddModal = () => {
       const modalElement = document.getElementById('add_PublicidadModal');
@@ -195,20 +190,6 @@ export default defineComponent({
       }
     };
 
-    const headers = ref([
-      { text: '#', width: '5%', key: 'index' },
-      { text: 'IMAGEN', width: '30%', key: 'urlFoto' },
-      { text: 'NOMBRE', width: '10%', key: 'nombre' },
-      { text: 'UBICACIÓN', width: '10%', key: 'ubicacion' },
-      { text: 'CUOTAS', width: '10%', key: 'cuotas' },
-      { text: 'AREA', width: '10%', key: 'area' },
-      { text: 'ESTADO', width: '10%', key: 'estado' },
-      { text: 'ACCIONES', width: '10%', key: 'acciones' },
-      { text: '', width: '5%', key: 'acciones' },
-    ]);    const resetear = () => {
-      // Listar_Publicidad();
-    };
-
     const cargar_link = async () => {
       isloading.value = true;
       // await Listar_Publicidad();
@@ -216,16 +197,12 @@ export default defineComponent({
     };
     onMounted(async () => {
       await cargar_link();
-      // console.log("Datos cargados:", listaPublicidad.value);
+      await Listar_Pagina(); // Cargar datos de la empresa
     });
 
     // Estado y handlers para logo y portada
-    const logoUrl = ref('');
-    const portadaUrl = ref('');
     const isUploading = ref(false);
     const resetTrigger = ref(0);
-    const archivoTemporalLogo = ref({ url: '' });
-    const archivoTemporalPortada = ref({ url: '' });
 
     const openLogoModal = () => {
       const modalElement = document.getElementById('modal_logo');
@@ -242,47 +219,66 @@ export default defineComponent({
       }
     };
     const onLogoUploaded = (archivo: any) => {
-      archivoTemporalLogo.value = archivo;
-      logoUrl.value = archivo.url;
+      // Actualizar el ArchivoTemporal del composable
+      archivoLogo.ArchivoTemporal.value = archivo;
     };
     const onPortadaUploaded = (archivo: any) => {
-      archivoTemporalPortada.value = archivo;
-      portadaUrl.value = archivo.url;
+      // Actualizar el ArchivoTemporal del composable
+      archivoPortada.ArchivoTemporal.value = archivo;
     };
-    const guardarLogo = () => {
-      resetTrigger.value++;
-      const modalElement = document.getElementById('modal_logo');
-      if (modalElement) {
-        const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
-        modal.hide();
+    
+    const guardarLogo = async () => {
+      if (archivoLogo.ArchivoTemporal.value && archivoLogo.ArchivoTemporal.value.url) {
+        try {
+          await updateCampo('logo', archivoLogo.ArchivoTemporal.value.url);
+          // Actualizar el estado local
+          EstaEmpresa.value.logo = archivoLogo.ArchivoTemporal.value.url;
+          // Resetear el formulario
+          archivoLogo.reset_formUpload();
+          resetTrigger.value++;
+          const modalElement = document.getElementById('modal_logo');
+          if (modalElement) {
+            const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
+            modal.hide();
+          }
+        } catch (error) {
+          console.error('Error al guardar logo:', error);
+        }
       }
     };
-    const guardarPortada = () => {
-      resetTrigger.value++;
-      const modalElement = document.getElementById('modal_portada');
-      if (modalElement) {
-        const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
-        modal.hide();
+    
+    const guardarPortada = async () => {
+      if (archivoPortada.ArchivoTemporal.value && archivoPortada.ArchivoTemporal.value.url) {
+        try {
+          await updateCampo('portada', archivoPortada.ArchivoTemporal.value.url);
+          // Actualizar el estado local
+          EstaEmpresa.value.portada = archivoPortada.ArchivoTemporal.value.url;
+          // Resetear el formulario
+          archivoPortada.reset_formUpload();
+          resetTrigger.value++;
+          const modalElement = document.getElementById('modal_portada');
+          if (modalElement) {
+            const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
+            modal.hide();
+          }
+        } catch (error) {
+          console.error('Error al guardar portada:', error);
+        }
       }
     };
 
     return {
-      headers,
-      // listaPublicidad,
       isloading,
       openAddModal,
       openEditModal,
-      resetear,
-      // Listar_Publicidad,
-      // Eliminar_publicidad,
+      // resetear,
       selectedPublicidadId,
       // Logo y portada
-      logoUrl,
-      portadaUrl,
+      EstaEmpresa,
       isUploading,
       resetTrigger,
-      archivoTemporalLogo,
-      archivoTemporalPortada,
+      archivoLogo,
+      archivoPortada,
       openLogoModal,
       openPortadaModal,
       onLogoUploaded,

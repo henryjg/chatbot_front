@@ -24,11 +24,11 @@
               <i class="fas fa-image me-2"></i>Sliders
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" :class="{ active: activeTab === 'categorias' }" id="tab-categorias" href="#" role="tab" :aria-selected="activeTab === 'categorias'" @click.prevent="activeTab = 'categorias'">
               <i class="ti ti-list me-2"></i>Categorías
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" :class="{ active: activeTab === 'publicidad' }" id="tab-publicidad" href="#" role="tab" :aria-selected="activeTab === 'publicidad'" @click.prevent="activeTab = 'publicidad'">
               <i class="fas fa-home me-2"></i>Imagenes
@@ -50,10 +50,10 @@
             <div class="row p-4">
               <div class="col-md-11">
                 <div class="d-flex">
-                  <div v-html="EstaEmpresa.politicasprivacidad" class="alert alert-secondary text-justify b-gray w-100 mb-0"></div>
+                  <div v-html="EstaEmpresa.politicasPrivacidad" class="alert alert-secondary text-justify b-gray w-100 mb-0"></div>
                   <button class="btn btn-sm btn-secondary hei-35 mx-1" type="button" 
                           data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                          @click="load_htmlcontent('politicasprivacidad', EstaEmpresa.politicasprivacidad)">
+                          @click="load_htmlcontent('politicasprivacidad', EstaEmpresa.politicasPrivacidad)">
                     <i class="ph-duotone ph-pencil-simple-line"></i>
                   </button>
                 </div>
@@ -68,10 +68,10 @@
             <div class="row p-4">                    
               <div class="col-md-11">
                 <div class="d-flex ">
-                  <div v-html="EstaEmpresa.terminosycondiciones" class="alert alert-secondary text-justify b-gray w-100 mb-0"></div>
+                  <div v-html="EstaEmpresa.terminos" class="alert alert-secondary text-justify b-gray w-100 mb-0"></div>
                   <button class="btn btn-sm btn-secondary hei-35 mx-1" type="button" 
                           data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                          @click="load_htmlcontent('terminosycondiciones', EstaEmpresa.terminosycondiciones)">
+                          @click="load_htmlcontent('terminos', EstaEmpresa.terminos)">
                     <i class="ph-duotone ph-pencil-simple-line"></i>
                   </button>
                 </div>
@@ -86,8 +86,8 @@
               <label class="col-md-3 align-content-top pt-2">Facebook</label>
               <div class="col-md-9">
                 <div class="input-group">
-                  <input type="text" v-model="EstaEmpresa.linkfacebook" class="form-control" />
-                  <button class="btn btn-light b-gray" @click="upd_facebook(EstaEmpresa.id, EstaEmpresa.linkfacebook)">
+                  <input type="text" v-model="EstaEmpresa.facebook" class="form-control" />
+                  <button class="btn btn-light b-gray" @click="updateCampo('facebook', EstaEmpresa.facebook)">
                     <i class="fa fa-save"></i>
                   </button>
                 </div>
@@ -98,8 +98,8 @@
               <label class="col-md-3 align-content-top pt-2">Instagram</label>
               <div class="col-md-9">
                 <div class="input-group">
-                  <input type="text" v-model="EstaEmpresa.linkinstagram" class="form-control" />
-                  <button class="btn btn-light b-gray" @click="upd_instagram(EstaEmpresa.id, EstaEmpresa.linkinstagram)">
+                  <input type="text" v-model="EstaEmpresa.instragram" class="form-control" />
+                  <button class="btn btn-light b-gray" @click="updateCampo('instragram', EstaEmpresa.instragram)">
                     <i class="fa fa-save"></i>
                   </button>
                 </div>
@@ -110,8 +110,8 @@
               <label class="col-md-3 align-content-top pt-2">Teléfono de Contacto</label>
               <div class="col-md-9">
                 <div class="input-group">
-                  <input type="text" v-model="EstaEmpresa.telefonocontacto" class="form-control" />
-                  <button class="btn btn-light b-gray" @click="upd_telefono(EstaEmpresa.id, EstaEmpresa.telefonocontacto)">
+                  <input type="text" v-model="EstaEmpresa.celular2" class="form-control" />
+                  <button class="btn btn-light b-gray" @click="updateCampo('celular2', EstaEmpresa.celular2)">
                     <i class="fa fa-save"></i>
                   </button>
                 </div>
@@ -122,8 +122,8 @@
               <label class="col-md-3 align-content-top pt-2">Celular de Contacto</label>
               <div class="col-md-9">
                 <div class="input-group">
-                  <input type="text" v-model="EstaEmpresa.celularcontacto" class="form-control" />
-                  <button class="btn btn-light b-gray" @click="upd_celular(EstaEmpresa.id, EstaEmpresa.celularcontacto)">
+                  <input type="text" v-model="EstaEmpresa.celular" class="form-control" />
+                  <button class="btn btn-light b-gray" @click="updateCampo('celular', EstaEmpresa.celular)">
                     <i class="fa fa-save"></i>
                   </button>
                 </div>
@@ -134,9 +134,9 @@
         <div v-if="activeTab === 'sliders'" class="tab-pane fade show active" id="sliders" role="tabpanel">
           <slider_lista />
         </div>
-        <div v-if="activeTab === 'categorias'" class="tab-pane fade show active" id="categorias" role="tabpanel">
+        <!-- <div v-if="activeTab === 'categorias'" class="tab-pane fade show active" id="categorias" role="tabpanel">
           <categoria_lista />
-        </div>
+        </div> -->
         <div v-if="activeTab === 'publicidad'" class="tab-pane fade show active" id="publicidad" role="tabpanel">
           <publicidad_lista />
         </div>
@@ -163,7 +163,7 @@
       </div>
       <div class="text-end mt-2">
         <div class="container">
-          <button class="btn btn-success mx-1" @click="guardarEditorContent()" data-bs-dismiss="offcanvas"> Guardar </button>
+          <button class="btn btn-success mx-1" @click="updateCampo(campoedit, editorContent)" data-bs-dismiss="offcanvas"> Guardar </button>
           <button class="btn btn-danger  mx-1" data-bs-dismiss="offcanvas"> Cancelar </button>
         </div>
       </div>
@@ -175,9 +175,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import slider_lista from './slider_lista.vue';
-// import categoria_lista from './categoria_lista.vue';
-// import preguntas_lista from './preguntas_lista.vue';
-import publicidad_lista from './publiLink_List.vue';;
+import publicidad_lista from './pagina_imagenes.vue';;
 import { Modal } from 'bootstrap';
 import NProgress from 'nprogress';
 import { QuillEditor, Delta } from '@vueup/vue-quill'
@@ -186,12 +184,11 @@ import { usePagina } from '../../composables/_composables';
 import { Notif } from '../../utils/_utils';
 import { Pagina } from '../../interfaces/_interface';
 import BlotFormatter from 'quill-blot-formatter'
+import { updateLanguageServiceSourceFile } from 'typescript';
 
 export default defineComponent({
   components: {
     slider_lista,
-    // categoria_lista,
-    // preguntas_lista,
     ErrorMessage,
     QuillEditor,
     publicidad_lista
@@ -201,54 +198,20 @@ export default defineComponent({
     const isUploading = ref(false);
     const editorContent = ref('');
     const campoedit = ref('');
-    const { Listar_Pagina, Obtener_Pagina, Crear_Pagina, Actualizar_Pagina, Eliminar_Pagina, EstaEmpresa, errors, 
-            actualizarPoliticas, actualizarTerminos, actualizarFacebook, actualizarInstagram, actualizarTelefono, actualizarCelular } = usePagina();
+    const { Listar_Pagina, updateCampo, EstaEmpresa } = usePagina();
+    
     const load_htmlcontent = (campo: string, valor: string) => {
       editorContent.value = valor;
       campoedit.value = campo;
     };
+
     const modules = {
       name: 'blotFormatter',
       module: BlotFormatter,
       options: {}
-    };    const guardarEditorContent = async () => {
-      try {
-        switch (campoedit.value) {
-          case 'politicasprivacidad':
-            await actualizarPoliticas(EstaEmpresa.value.id, editorContent.value);
-            break;
-          case 'terminosycondiciones':
-            await actualizarTerminos(EstaEmpresa.value.id, editorContent.value);
-            break;
-        }
-      } catch (error) {
-        console.error('Error al guardar contenido:', error);
-      }
-    };    const upd_facebook = async (id: number, facebook: string) => {
-      try {
-        await actualizarFacebook(id, facebook);
-      } catch (error) {
-        console.error('Error al actualizar Facebook:', error);
-      }
-    };    const upd_instagram = async (id: number, instagram: string) => {
-      try {
-        await actualizarInstagram(id, instagram);
-      } catch (error) {
-        console.error('Error al actualizar Instagram:', error);
-      }
-    };    const upd_telefono = async (id: number, telefono: string) => {
-      try {
-        await actualizarTelefono(id, telefono);
-      } catch (error) {
-        console.error('Error al actualizar teléfono:', error);
-      }
-    };    const upd_celular = async (id: number, celular: string) => {
-      try {
-        await actualizarCelular(id, celular);
-      } catch (error) {
-        console.error('Error al actualizar celular:', error);
-      }
-    };
+    };    
+    
+ 
     onMounted(async () => {
       await Listar_Pagina();
     });
@@ -259,12 +222,8 @@ export default defineComponent({
       campoedit,
       EstaEmpresa,
       load_htmlcontent,
-      guardarEditorContent,
-      upd_facebook,
-      upd_instagram,
-      upd_telefono,
-      upd_celular,
-      modules
+      modules,
+      updateCampo
     };
   }
 });

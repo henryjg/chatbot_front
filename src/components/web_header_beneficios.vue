@@ -13,7 +13,7 @@
       <div class="container">
         <a class="pc-navbar-brand " href="#">
           <div class=" text-white f-w-200 f-24">
-            <img src="../assets/imp-logo-white-238x63.png" alt="logo" class="logo-lg " height="40px">
+            <img src="../assets/logochatbot.png" alt="logo" class="logo-lg " height="40px">
           </div>
         </a>
      
@@ -26,11 +26,11 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav me-auto p-l-20 mt-lg-0 mt-5 mb-2 mb-lg-0 align-items-start ">
             
-            <li class="nav-item  px-1">
+            <!-- <li class="nav-item  px-1">
               <router-link to="/" class="nav-link text-hover-info text-light f-16 d-flex">
                 <i class="fa fa-home f-18  p-r-5 text-hover-info text-light align-content-center mb-0"></i> Inicio
               </router-link>
-            </li>
+            </li> -->
 <!-- 
             <li class="nav-item  px-1">
               <router-link to="/beneficios/" class="nav-link text-hover-info text-light f-16 d-flex">
@@ -38,7 +38,7 @@
               </router-link>
             </li>
              -->
-            <li class="nav-item f-16  px-1">
+            <!-- <li class="nav-item f-16  px-1">
               <router-link  to="/beneficios/ofertas" class="nav-link text-hover-info text-light  d-flex ">
                 <i class="fa fa-caret-right p-r-5 align-content-center"></i>Descuentos
               </router-link>
@@ -54,7 +54,7 @@
               <router-link  to="/beneficios/novedades" class="nav-link  text-hover-info text-light  d-flex">
                 <i class="fa fa-caret-right p-r-5 align-content-center"></i>Novedades
               </router-link>
-            </li>
+            </li> -->
 
             <!-- <li class="nav-item f-16  px-1" v-if="Usuario.idrol === 2">
               <router-link to="/beneficios/cumple" class="nav-link text-hover-info text-light d-flex">
@@ -134,7 +134,7 @@
       <!-- <li v-if="isLoggedIn" class="nav-item mb-4 text-white">
         Bienvenido, {{Usuario.nombreusuario}}
       </li> -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link to="/beneficios/" class="nav-link text-white f-16 d-flex">
           <div data-bs-dismiss="offcanvas">
             <i class="fa fa-caret-right f-18 text-white p-r-5 align-content-center mb-0"></i> Inicio
@@ -163,7 +163,7 @@
             <i class="fa fa-caret-right p-r-5 align-content-center"></i>Novedades
           </div>
         </router-link>
-      </li>
+      </li> -->
 
       <li class="nav-item f-16 pt-5">
           <div @click="Loggin" class="btn-warning bg-yellow-800 border-0 btn mb-2 w-100 d-flex flex-wrap">
@@ -227,7 +227,7 @@
 
 <script lang="ts">
   import { ref, watch, onMounted, computed } from 'vue';
-  import { usarCarritoStore } from '../stores/OfertaCarrito'; // Importar el store
+  // import { usarCarritoStore } from '../stores/OfertaCarrito'; // Importar el store
   import { usarAuthStore } from '../stores/authStore'; // Importar el store de autenticación
   import { UsuarioLogueado } from '../interfaces/usuario.interface';
   import Alerta from '../utils/alertas';
@@ -238,7 +238,7 @@ import router from '../router';
   export default {
     setup() {
       const isModeDark = ref(false);
-      const carritoStore = usarCarritoStore(); // Usar el store
+      // const carritoStore = usarCarritoStore(); // Usar el store
       const authStore = usarAuthStore(); // Usar el store de autenticación
       // const Usuario = computed(() => authStore.usuarioLogueado);
       const { logout } = usarAutenticacion();
@@ -315,11 +315,11 @@ import router from '../router';
       };
 
       const Loggin = () => {
-        router.push('/beneficios/loggin');
+        router.push('/beneficios/loggin_admin');
       };
 
       return {
-        toggleTheme, isModeDark, showDropdown, toggleDropdown, carritoStore,authStore,confirmLogout,Loggin
+        toggleTheme, isModeDark, showDropdown, toggleDropdown,authStore,confirmLogout,Loggin
       };
     }
   };

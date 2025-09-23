@@ -2,7 +2,7 @@
   <nav class="pc-sidebar">
     <div class="navbar-wrapper">
        <div class="m-header d-flex justify-content-center align-items-center">
-        <router-link to="/" class="b-brand text-primary">
+        <router-link to="/beneficios/loggin_admin" class="b-brand text-primary">
           <img src="../assets/logochatbot.png" alt="logo image" class="logo-lg wid-100" />
         </router-link>
       </div>

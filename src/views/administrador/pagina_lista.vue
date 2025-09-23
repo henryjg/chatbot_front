@@ -89,9 +89,9 @@ export default defineComponent({
       cargar_listaServicios();
     };
 
-    watch(listaServicios, (nuevaLista) => {
-      // console.log('listaServicios actualizada:', nuevaLista);
-    });
+    // watch(listaServicios, (nuevaLista) => {
+    //   // console.log('listaServicios actualizada:', nuevaLista);
+    // });
 
     onMounted(async () => {
       await cargar_listaServicios();

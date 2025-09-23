@@ -40,11 +40,11 @@
               <input type="text" v-model="trabajador.apellidos" class="form-control" placeholder="Ingresa Apellido Paterno">
               <ErrorMessage :error="errors.apellidos" />
             </div>
-            <!-- <div class="col-md-4">
-              <label class="form-label">Apellido Materno</label>
-              <input type="text" v-model="trabajador.apeMaterno" class="form-control" placeholder="Ingresa Apellido Materno">
-              <ErrorMessage :error="errors.apeMaterno" />
-            </div> -->
+            <div class="col-md-4">
+              <label class="form-label">Fecha Nacimiento</label>
+              <input class="form-control" v-model="fechaNacimiento" type="date">
+              <ErrorMessage :error="errors.fechaNacimiento" />
+            </div>
           </div>
           <!-- Género con botones -->
           <div class="mb-2">
@@ -57,32 +57,8 @@
             </div>
             <ErrorMessage :error="errors.genero" />
           </div>
-          <!-- Cargo y Oficina en la misma fila -->
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label class="form-label">Cargo</label>
-              <select v-model="trabajador.cargo" class="form-select">
-                <option value="" disabled>Selecciona un cargo</option>
-                <option v-for="cargoItem in cargo" :key="cargoItem" :value="cargoItem">{{ cargoItem }}</option>
-              </select>
-              <ErrorMessage :error="errors.cargo" />
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">Oficina</label>
-              <select v-model="trabajador.oficinaId" class="form-select">
-                <option disabled>Elegir</option>
-                <!-- <option v-for="oficina in listaOficinas"  :key="oficina.id" :value="oficina.id">{{oficina.nombre}}</option> -->
-              </select>
-              <ErrorMessage :error="errors.oficinaId" />
-            </div>
-          </div>
           <!-- Fecha de nacimiento, Celular y Correo en la misma fila -->
           <div class="row mb-2">
-            <div class="col-md-4">
-              <label class="form-label">Fecha Nacimiento</label>
-              <input class="form-control" v-model="fechaNacimiento" type="date">
-              <ErrorMessage :error="errors.fechaNacimiento" />
-            </div>
             <div class="col-md-4">
               <label class="form-label">Celular</label>
               <input type="text" v-model="trabajador.celular" class="form-control" placeholder="Ingresa tu celular">

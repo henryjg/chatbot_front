@@ -31,7 +31,7 @@ export { useGoogleMaps } from './useGoogleMaps';
 // export { useTokenRefresh } from './useTokenRefresh';
 export { useItemState } from "./useItemState";
 export { usarAutenticacion } from './AuthValidate';
-export { usarCarritoStore } from '../stores/OfertaCarrito';
+// export { usarCarritoStore } from '../stores/OfertaCarrito';
 
 // Composables utilitarios y herramientas
 export { useSubirArchivo } from './useSubirArchivo';

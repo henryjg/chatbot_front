@@ -9,7 +9,7 @@ const WebPaginaService = {
    */
   async listar() {
     try {
-      const response = await axios.post(API_URL, { op: 'listarPaginas' }, {
+      const response = await axios.post(API_URL, { op: 'get_Empresa' }, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -88,6 +88,21 @@ const WebPaginaService = {
       throw handleApiError(error);
     }
   },
+
+  // actualizar campos
+    async Upd_Campo(campo: String, valor: String) {
+      try {
+        const response = await axios.post(API_URL, {
+          op: 'upd_campo',
+          Campo: campo,
+          Valor: valor
+        });
+        return response.data;
+      } catch (error) {
+        console.error(`Error al actualizar campo ${campo}:`, error);
+        throw handleApiError(error);
+      }
+    },
 
   // Métodos de actualización parcial agrupados
   campos: {

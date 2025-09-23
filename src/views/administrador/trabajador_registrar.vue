@@ -39,6 +39,12 @@
               <input type="text" v-model="nuevoTrabajador.apellidos" class="form-control" placeholder="Ingresa Apellidos">
               <ErrorMessage :error="errors.apellidos" />
             </div>
+            <div class="col-md-4">
+              <label class="form-label">Fecha Nacimiento</label>
+              <input class="form-control" v-model="nuevoTrabajador.fechaNacimiento" type="date">
+              <ErrorMessage :error="errors.fechaNacimiento" />
+            </div>
+
             <!-- <div class="col-md-4">
               <label class="form-label">Apellido Materno</label>
               <input type="text" v-model="nuevoTrabajador.apeMaterno" class="form-control" placeholder="Ingresa Apellido Materno">
@@ -55,61 +61,7 @@
             </div>
             <ErrorMessage :error="errors.genero" />
           </div>
-      <!-- --------------------------------------------------------------------------- -->
-          <!-- <div class="mb-2">
-            <label class="form-label">Función:</label>
-            <select v-model="trabajador.area_id" class="form-select">
-              <option value="Jefe">Jefe</option>
-              <option value="Asistente Administrativo(a)">Asistente Administrativo</option>
-              <option value="Secretaria(o)">Secretaria(o)</option>
-            </select>
-            <ErrorMessage :error="errors.cargo" />
-          </div> -->
-          <!-- --------------------------------------------------------------------------- -->
-<!-- 
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label class="form-label">Cargo</label>
-              <select v-model="nuevoTrabajador.cargo" class="form-select">
-                <option value="" disabled>Selecciona un cargo</option>
-                <option v-for="cargoItem in cargo" :key="cargoItem" :value="cargoItem">{{ cargoItem }}</option>
-              </select>
-              <ErrorMessage :error="errors.cargo" />
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">Oficina</label>
-              <select v-model="nuevoTrabajador.oficinaId" class="form-select">
-                <option>Elegir</option>
-               </select>
-              <ErrorMessage :error="errors.oficinaId" />
-            </div>
-          </div> -->
-          <!-- ------------------------------------------------- -->
-<!-- 
-          <div class="mb-2">
-            <label class="form-label">Tipo Usuario:</label>
-            <select v-model="trabajador.rol_id" class="form-select">
-              <option value="1">Administrador</option>
-              <option value="2">Mesa de Partes</option>
-              <option value="3">Trámite Documentario</option>
-              <option value="4">Licecias</option>
-            </select>
-            <ErrorMessage :error="errors.cargo" />
-          </div> -->
-        <!-- ----------------------------------------------------- -->
-
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label class="form-label">Fecha Nacimiento</label>
-              <input class="form-control" v-model="nuevoTrabajador.fechaNacimiento" type="date">
-              <ErrorMessage :error="errors.fechaNacimiento" />
-            </div>
-            <!-- <div class="col-md-6">
-              <label class="form-label">Fecha de Contratación</label>
-              <input class="form-control" v-model="nuevoTrabajador.fechaIngreso" type="date" >
-              <ErrorMessage :error="errors.fechaIngreso" />
-            </div> -->
-          </div>
+  
               <div class="row mb-2">
             <div class="col-md-6">
               <label class="form-label">Celular</label>
@@ -224,16 +176,6 @@ export default defineComponent({
       router.push('/office/trabajador');
     };   
 
-    const onFileSelected_FotoPerfil = (event: Event) => {
-      const file = (event.target as HTMLInputElement).files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          nuevoTrabajador.value.fotoPerfil = e.target?.result as string;
-        };
-        reader.readAsDataURL(file);
-      }
-    };
 
     const guardarTrabajador = async () => {
       try {

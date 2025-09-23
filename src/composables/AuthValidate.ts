@@ -39,7 +39,7 @@ export function usarAutenticacion() {
 
   const logout = () => {
     authStore.cerrarSesion();
-    router.push({ name: 'Loggin' }); // Redirigir a la página de login
+    router.push({ name: 'Login_admin' }); // Redirigir a la página de login
   };
 
   // Observa los cambios en el trabajador para redirigir si no está autenticado
@@ -47,7 +47,7 @@ export function usarAutenticacion() {
     () => authStore.trabajador,
     (nuevoTrabajador) => {
       if (!nuevoTrabajador) {
-        router.push({ name: 'Loggin' });
+        router.push({ name: 'Login_admin' });
       }
     }
   );

@@ -134,13 +134,6 @@ export const menuItems: MenuItem[] = [
   // },
   {
     tipe: "link",
-    text: "Entradas",
-    icon: "fas fa-medkit",
-    route: "/office/pagina",
-    role_ids: ["Administrador"], // Solo visible para Administrador
-  },
-  {
-    tipe: "link",
     text: "Trabajador",
     icon: "fas fa-user",
     route: "/office/trabajador",

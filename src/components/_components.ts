@@ -26,7 +26,7 @@ export { default as DataTablePaginated } from './table/DataTablePaginated.vue';
 // export { default as CardOferta } from './card_oferta.vue';
 // export { default as cardProduct } from './card_oferta.vue'; // Alias para retrocompatibilidad
 export { default as CardNoticia } from './card_noticia.vue';
-export { default as CardMarca } from './card_marca.vue';
+// export { default as CardMarca } from './card_marca.vue';
 // export { default as CardPublicidad } from './card_publicidad.vue';  
 // export { default as CardCantidadCupones } from './card_cantidadCupones.vue';
 // export { default as cardPublicidad } from './card_publicidad.vue';

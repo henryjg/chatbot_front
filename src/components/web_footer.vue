@@ -3,6 +3,11 @@
     <div>
       <div class="bg-blue-900 py-2 position-relative">
         <div class="text-center">
+          <p class="mb-1 pt-2">
+            <RouterLink to="/beneficios/terminosycondiciones" class="hover:underline">Términos y Condiciones</RouterLink> |
+            <RouterLink to="/beneficios/politicasyprivacidad" class="hover:underline">Políticas de Privacidad</RouterLink>
+             <!-- <RouterLink to="/beneficios/loggin_admin" class="hover:underline">Login Gestión</RouterLink> -->
+          </p>
 
           <p class="text-sm text-info">© Todos los derechos reservados.</p>
         </div>
