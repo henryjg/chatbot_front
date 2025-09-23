@@ -9,7 +9,7 @@
             <i class="fas fa-user-plus"></i> Agregar
           </button>
         </router-link>
-        <button @click="" class="btn btn-blue b-dark btn-sm mx-1">
+        <button @click="Listar_Trabajadores" class="btn btn-blue b-dark btn-sm mx-1">
           <i class="ti ti-refresh"></i>
         </button>
         <button @click="resetear" class="btn btn-secondary btn-sm mx-1">
@@ -174,7 +174,8 @@ export default {
       totalTrabajadoresInactivos,
       resetear,
       ListaTrabajadores,
-      Eliminar_Trabajador
+      Eliminar_Trabajador,
+      Listar_Trabajadores
     };
   }
 };
