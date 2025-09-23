@@ -1,9 +1,9 @@
 <template>
 
   <!-- Lista de citas -->
-  <CardLayout :title="'Citas Médicas'" :clase="'text-info'" :clasehead="'bg-primary border-0'" class="pt-1">
+  <CardLayout :title="'Citas Médicas'" :clase="' text-white'" :clasehead="'bg-green-900  border-0'" class="pt-1">
     <template #buttons>
-      <div class="d-flex columns justify-content-end mb-2">
+      <div class="d-flex columns justify-content-end">
         <!-- <router-link to="/beneficios/formulario-cita" class="pc-link">
           <button type="button" class="btn btn-primary float-end">
             <i class="fas fa-plus"></i> Nueva Cita
@@ -81,9 +81,9 @@
   <div class="modal fade" id="modalEditarCita" tabindex="-1" aria-labelledby="modalEditarCitaLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title" id="modalEditarCitaLabel">
-            <i class="ti ti-edit me-2"></i>Editar Cita Médica
+        <div class="modal-header bg-primary text- py-1">
+          <h5 class="modal-title text-white" id="modalEditarCitaLabel">
+            <i class="ti ti-edit"></i>Editar Cita Médica
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>

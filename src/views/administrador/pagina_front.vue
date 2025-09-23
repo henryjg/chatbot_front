@@ -1,9 +1,9 @@
 
 <template>
-  <div class="d-flex flex-row align-items-start w-100">
+  <div class="d-flex flex-row align-items-start w-100 pt-2">
     <div class="card px-2" style="width: 48vw; min-width: 350px; max-width: 700px;">
-      <div class="card-header">
-        <h2 class="mb-3" style="font-size:1.3rem;">{{ isEditing ? 'Editar Entrada' : 'Crear Entrada' }}</h2>
+      <div class="card-header py-1 mt-1 ">
+        <h4 class="text-primary"><i class="fa fa-medkit"></i> {{ isEditing ? 'Editar Entrada' : 'Crear Entrada' }}</h4>
       </div>
       <form @submit.prevent="guardar">
         <div class="mb-2 d-flex align-items-center">
@@ -48,7 +48,7 @@
             v-model:content="nuevoServicio.descripcion"
             :modules="modules"
             toolbar="minimal"
-            style="height:70px;"
+            style="height:150px;"
           />
         </div>
         <div class="mb-2">
@@ -58,7 +58,7 @@
             v-model:content="nuevoServicio.beneficios"
             :modules="modules"
             toolbar="minimal"
-            style="height:70px;"
+            style="height:150px;"
           /> </div>
         <div class="mb-2">
           <label for="precio" class="form-label">Precio</label>
@@ -71,7 +71,7 @@
             v-model:content="nuevoServicio.facilidades"
             :modules="modules"
             toolbar="minimal"
-            style="height:70px;"
+            style="height:150px;"
           />
          </div>
         <div class="mb-2">
@@ -89,7 +89,7 @@
             v-model:content="nuevoServicio.info_adicional"
             :modules="modules"
             toolbar="minimal"
-            style="height:70px;"
+            style="height:150px;"
           />
         </div>
         <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Guardar' }}</button>

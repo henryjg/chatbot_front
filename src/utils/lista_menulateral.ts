@@ -11,16 +11,13 @@ export interface MenuItem {
 
 
 export const menuItems: MenuItem[] = [
-
   // {
   //   tipe: 'titulo',
   //   text: 'Operaciones',
   //   icon: '',
-  //   route: '', 
+  //   route: '',
   //   // role_ids: [1,3]
   // },
-
-
 
   //---------------------------------------------------
   //---------------------------------------------------
@@ -79,7 +76,7 @@ export const menuItems: MenuItem[] = [
   //   tipe: 'titulo',
   //   text: 'Cupones',
   //   icon: '',
-  //   route: '',  
+  //   route: '',
   //   role_ids: [4]
   // },
   // {
@@ -99,14 +96,13 @@ export const menuItems: MenuItem[] = [
   //---------------------------------------------------
   //---------------------------------------------------
   {
-    tipe: 'titulo',
-    text: 'Configuracion',
-    icon: '',
-    route: '',  
-    role_ids: ['Administrador']
+    tipe: "titulo",
+    text: "Configuracion",
+    icon: "",
+    route: "",
+    role_ids: ["Administrador"],
   },
-  
- 
+
   // {
   //   tipe: 'link',
   //   text: 'Oficina',
@@ -121,7 +117,7 @@ export const menuItems: MenuItem[] = [
   //   route: '/office/SliderPrincipal',
   //   role_ids: [1, 4] // Visible para Administrador y Licencias
   // },
-  
+
   // {
   //   tipe: 'link',
   //   text: 'Categorias',
@@ -129,33 +125,33 @@ export const menuItems: MenuItem[] = [
   //   route: '/office/categoria',
   //   role_ids: [1, 4]  // Solo visible para Administrador
   // },
-    {
-    tipe: 'link',
-    text: 'Paginas',
-    icon: 'fas fa-solid fa-window-maximize',
-    route: '/office/editarcampos',
-    role_ids: ['Administrador'] // Visible para Administrador y Licencias
+  //   {
+  //   tipe: 'link',
+  //   text: 'Paginas',
+  //   icon: 'fas fa-solid fa-window-maximize',
+  //   route: '/office/editarcampos',
+  //   role_ids: ['Administrador'] // Visible para Administrador y Licencias
+  // },
+  {
+    tipe: "link",
+    text: "Entradas",
+    icon: "fas fa-medkit",
+    route: "/office/pagina",
+    role_ids: ["Administrador"], // Solo visible para Administrador
   },
   {
-    tipe: 'link',
-    text: 'Entradas',
-    icon: 'fas fa-file',
-    route: '/office/pagina',
-    role_ids: ['Administrador']  // Solo visible para Administrador
+    tipe: "link",
+    text: "Trabajador",
+    icon: "fas fa-user",
+    route: "/office/trabajador",
+    role_ids: ["Administrador"], // Solo visible para Administrador
   },
-   {
-    tipe: 'link',
-    text: 'Trabajador',
-    icon: 'fas fa-file',
-    route: '/office/trabajador',
-    role_ids: ['Administrador']  // Solo visible para Administrador
-  },
-   {
-    tipe: 'link',
-    text: 'Citas Médicas',
-    icon: 'fas fa-file',
-    route: '/office/citas_lista',
-    role_ids: ['Administrador']  // Solo visible para Administrador
+  {
+    tipe: "link",
+    text: "Citas Médicas",
+    icon: "fas fa-calendar-check",
+    route: "/office/citas_lista",
+    role_ids: ["Administrador"], // Solo visible para Administrador
   },
   // {
   //   tipe: 'link',

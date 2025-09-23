@@ -3,9 +3,9 @@
   <!-- {{ ListaTrabajadores }} -->
   <CardLayout :title="'Trabajadores'" :clase="'text-info'" :clasehead="'bg-primary border-0'" class="pt-1">
     <template #buttons>
-      <div class="d-flex columns justify-content-end mb-2">
+      <div class="d-flex columns justify-content-end ">
         <router-link to="/office/registrartrabajador" class="pc-link">
-          <button type="button" class="btn btn-primary float-end">
+          <button type="button" class="btn btn-primary float-end py-1">
             <i class="fas fa-user-plus"></i> Agregar
           </button>
         </router-link>
