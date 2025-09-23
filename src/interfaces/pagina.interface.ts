@@ -1,47 +1,55 @@
 export interface Pagina{
-id: number;
-NombrePagina: string;
-politicasprivacidad: string;
-terminosycondiciones: string;
-linkfacebook: string;
-linkinstagram: string;
-telefonocontacto: string;
-celularcontacto: string;
+  id: number;
+  nombreCorto: string;
+  politicasPrivacidad: string;
+  terminos: string;
+  facebook: string;
+  instragram: string;
+  celular: string;
+  celular2: string;
+  logo: string;
+  portada: string;
 }
 
 export const initializePagina = (): Pagina => {
   return {
     id: 0,
-    NombrePagina: '',
-    politicasprivacidad: '',
-    terminosycondiciones: '',
-    linkfacebook: '',
-    linkinstagram: '',
-    telefonocontacto: '',
-    celularcontacto: '',
+    nombreCorto: '',
+    politicasPrivacidad: '',
+    terminos: '',
+    facebook: '',
+    instragram: '',
+    celular: '',
+    celular2: '',
+    logo: '',
+    portada: '',
   };
 };
 
 export interface PaginaErrors {
     id: string;
-    NombrePagina: string;
-    politicasprivacidad: string;
-    terminosycondiciones: string;
-    linkfacebook: string;
-    linkinstagram: string;
-    telefonocontacto: string;
-    celularcontacto: string;
+    nombreCorto: string;
+    politicasPrivacidad: string;
+    terminos: string;
+    facebook: string;
+    instragram: string;
+    celular: string;
+    celular2: string;
+    logo: string;
+    portada: string;
   }
   
-  export const initializePaginaErrors = (): PaginaErrors => {
-    return {
-        id: '',
-        NombrePagina: '',
-        politicasprivacidad: '',
-        terminosycondiciones: '',
-        linkfacebook: '',
-        linkinstagram: '',
-        telefonocontacto: '',
-        celularcontacto: '',
-    };
+export const initializePaginaErrors = (): PaginaErrors => {
+  return {
+      id: '',
+      nombreCorto: '',
+      politicasPrivacidad: '',
+      terminos: '',
+      facebook: '',
+      instragram: '',
+      celular: '',
+      celular2: '',
+      logo: '',
+      portada: '',
   };
+};

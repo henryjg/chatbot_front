@@ -224,16 +224,6 @@ export default defineComponent({
       router.push('/office/trabajador');
     };   
 
-    const onFileSelected_FotoPerfil = (event: Event) => {
-      const file = (event.target as HTMLInputElement).files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          nuevoTrabajador.value.fotoPerfil = e.target?.result as string;
-        };
-        reader.readAsDataURL(file);
-      }
-    };
 
     const guardarTrabajador = async () => {
       try {

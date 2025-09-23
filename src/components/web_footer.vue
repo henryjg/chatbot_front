@@ -5,8 +5,8 @@
         <div class="text-center">
           <p class="mb-1 pt-2">
             <RouterLink to="/beneficios/terminosycondiciones" class="hover:underline">Términos y Condiciones</RouterLink> |
-            <RouterLink to="/beneficios/politicasyprivacidad" class="hover:underline">Políticas de Privacidad</RouterLink> |
-             <RouterLink to="/beneficios/loggin_admin" class="hover:underline">Login Gestión</RouterLink>
+            <RouterLink to="/beneficios/politicasyprivacidad" class="hover:underline">Políticas de Privacidad</RouterLink>
+             <!-- <RouterLink to="/beneficios/loggin_admin" class="hover:underline">Login Gestión</RouterLink> -->
           </p>
           <p class="text-sm text-info">© Todos los derechos reservados.</p>
         </div>
@@ -44,10 +44,10 @@ setup() {
   onMounted(async() => {
     DatosPagina.value = pagStore.pagina;
     await Listar_Pagina();
-    telefonocontacto.value = EstaEmpresa.value.telefonocontacto;
-    linkfacebook.value = EstaEmpresa.value.linkfacebook;
-    linkinstagram.value = EstaEmpresa.value.linkinstagram;
-    celularcontacto.value = EstaEmpresa.value.celularcontacto;
+    telefonocontacto.value = EstaEmpresa.value.celular2;
+    linkfacebook.value = EstaEmpresa.value.facebook;
+    linkinstagram.value = EstaEmpresa.value.instragram;
+    celularcontacto.value = EstaEmpresa.value.celular;
   });
 
   return {

@@ -1,6 +1,6 @@
 // Interfaces de negocio
-export * from './negocio.interface';
-export * from './oferta.interface';
+// export * from './negocio.interface';
+// export * from './oferta.interface';
 export * from './categoria.interface';
 // export * from './convenio.interface';
 // export * from './cupon.interface';
@@ -8,7 +8,7 @@ export * from './sede.interface';
 export * from './cliente.interface';
 // export * from './familiar.interface';
 export * from './trabajador.interface';
-export * from './oficina.interface';
+// export * from './oficina.interface';
 export * from './usuario.interface';
 export * from './usuarios.interface';
 export * from './publicidad.interface';

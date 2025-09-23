@@ -168,7 +168,7 @@
 
 <script lang="ts">
   import { ref, onMounted, computed } from 'vue';
-  import { usarCarritoStore } from '../stores/OfertaCarrito';
+  // import { usarCarritoStore } from '../stores/OfertaCarrito';
   // import { useAuthStore } from '../stores/authStore'; 
   import { UsuarioLogueado } from '../interfaces/usuario.interface';
   import Alerta from '../utils/alertas';
@@ -178,7 +178,7 @@
   export default {
     setup() {
       const isModeDark = ref(false);
-      const carritoStore = usarCarritoStore();
+      // const carritoStore = usarCarritoStore();
       // const authStore = useAuthStore(); 
       // const Usuario = computed(() => authStore.usuarioLogueado);
       const { logout } = usarAutenticacion();
@@ -257,7 +257,7 @@
 
 
       return {
-        toggleTheme, isModeDark, showDropdown, toggleDropdown, carritoStore, 
+        toggleTheme, isModeDark, showDropdown, toggleDropdown, 
         // Usuario,authStore,
         confirmLogout,
         // isLoggedIn

@@ -157,7 +157,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "PubliLink",
-        component: () => import("../views/administrador/publiLink_List.vue"),
+        component: () => import("../views/administrador/pagina_imagenes.vue"),
         meta: { requiresAuth: true },
       },
       {

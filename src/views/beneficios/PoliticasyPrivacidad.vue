@@ -15,7 +15,7 @@ export default defineComponent({
 
         onMounted(async () => {
             await Listar_Pagina();
-            politicasPrivacidad.value = EstaEmpresa.value.politicasprivacidad;
+            politicasPrivacidad.value = EstaEmpresa.value.politicasPrivacidad;
         });
 
         return {

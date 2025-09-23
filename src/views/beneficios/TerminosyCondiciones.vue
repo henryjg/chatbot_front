@@ -15,7 +15,7 @@ export default defineComponent({
 
         onMounted(async () => {
             await Listar_Pagina();
-            terminosYCondiciones.value = EstaEmpresa.value.terminosycondiciones;
+            terminosYCondiciones.value = EstaEmpresa.value.terminos;
         });
 
         return {
