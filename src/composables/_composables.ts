@@ -19,6 +19,7 @@ export { usePagina } from './usePagina';
 export { useSliders } from './useSlider';
 export { useTrabajador } from './useTrabajador';
 export { useUsuario } from './useUsuarios';
+export { usePreguntas } from './usePreguntas';
 // export { useEstadisticas } from './useEstadisticas';
 
 // Composables de recursos

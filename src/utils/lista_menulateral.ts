@@ -157,6 +157,13 @@ export const menuItems: MenuItem[] = [
     route: '/office/citas_lista',
     role_ids: ['Administrador']  // Solo visible para Administrador
   },
+  {
+    tipe: 'link',
+    text: 'Preguntas Frecuentes',
+    icon: 'fas fa-file',
+    route: '/office/preguntasfrecuentes',
+    role_ids: ['Administrador']  // Solo visible para Administrador
+  },
   // {
   //   tipe: 'link',
   //   text: 'Proyectos IMP',

@@ -166,6 +166,13 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("../views/administrador/pagina_campos.vue"),
         meta: { requiresAuth: true },
       },
+        {
+        path: "PreguntasFrecuentes",
+        name: "preguntasfrecuentes",
+        component: () => import("../views/administrador/preguntas_lista.vue"),
+        meta: { requiresAuth: true },
+      },
+      
       // {
       //   path: "Preguntas",
       //   name: "preguntas",
@@ -309,11 +316,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "RegistroCitas",
         component: () => import("../views/beneficios/formulario_cita.vue"),
       },
-      // {
-      //   path: "preguntasfrecuentes",
-      //   name: "PreguntasFrecuentes",
-      //   component: () => import("../views/beneficios/preguntas_frecuentes.vue"),
-      // },
+      {
+        path: "preguntasfrecuentes",
+        name: "PreguntasFrecuentes",
+        component: () => import("../views/beneficios/preguntas_frecuentes.vue"),
+      },
     ],
   },
   // {

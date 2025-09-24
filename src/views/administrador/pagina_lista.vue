@@ -34,14 +34,12 @@
                 </td>
                 <td class="text-wrap text-sentence">{{ item.categoria_nombre }}</td>
                 <!-- <td class="text-wrap text-sentence">{{ item.estado }}</td> -->
-                <td class="fw-bold text-center text-sm">
-                    {{ item.beneficios }}
+                <td class="fw-bold text-center text-sm" v-html="item.beneficios">
                 </td>
                 <td class="fw-bold text-center text-sm">
                     {{ item.precio }}
                 </td>
-                <td class="fw-bold text-center text-sm">
-                    {{ item.facilidades }}
+                <td class="fw-bold text-center text-sm" v-html="item.facilidades">
                 </td>
                 <td class="text-wrap text-sm">
                   <a :href="`/beneficios/novedades/${item.id}`" class="btn btn-light-primary btn-sm me-1" target="_blank" rel="noopener">

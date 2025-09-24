@@ -26,6 +26,7 @@ export * from './noticiasCategoria.interface';
 export * from './preguntas.interface';
 export * from './EvoltaInterfaces';
 export * from './citas.interface';
+export * from './preguntas.interface';
 // Interfaces de estadísticas
 export * from './estadisticas.interface';
 

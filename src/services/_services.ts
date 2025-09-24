@@ -26,6 +26,7 @@ export { default as ServiciosService } from './Servicios.service';
 export { default as NoticiaCategoriaService } from './NoticiaCategoria.service';
 export { default as FotoService } from './Foto.service';
 export { default as CitasService } from './Citas.service';
+export { default as PreguntasService } from './Preguntas.service';
 
 // Servicios de utilidad
 export { default as ServidorArchivosService } from './ServidorArchivos.service';
