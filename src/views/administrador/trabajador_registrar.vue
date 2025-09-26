@@ -124,7 +124,7 @@ import { cargo, Alerta } from '../../utils/_utils';
 import { useTrabajador, Sunat, useSubirArchivo } from '../../composables/_composables';
 import { Adjunto } from '../../interfaces/_interface';
 import NProgress from 'nprogress'; // Importa nprogress
-import 'nprogress/nprogress.css'; // Importa el estilo de nprogress
+// import 'nprogress/nprogress.css'; // Importa el estilo de nprogress
 
 interface Link {
   path: string;
